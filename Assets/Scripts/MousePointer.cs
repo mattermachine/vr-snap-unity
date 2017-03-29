@@ -14,13 +14,16 @@ public class MousePointer : MonoBehaviour
     private Camera mainCamera;
     private Material material;
     private bool dragging = false;
-    private float hitPointZ;
+    private float pointerZ;
+    private float defaultPointerZ = 5;
     private GameObject draggedObject;
     private List<Snap> snaps;
     private Vector3 hitPoint;
     private Vector3 hitNormal;
+    private Transform hitTransform;
     private bool flipNormal = false;
-    public bool doVertexSnaps = true;
+    public bool doVertexSnaps;
+    public bool dontRayWhenDragging;
 
     public float snapDistance = 5;  // snap radius in pixels
 
@@ -39,21 +42,46 @@ public class MousePointer : MonoBehaviour
         mainCamera = transform.parent.GetComponent<Camera>();
         material = gameObject.GetComponent<Renderer>().sharedMaterial;
         VRSettings.showDeviceView = true;
+        snaps = GetUserSnaps();
+        pointerZ = defaultPointerZ;
         //Screen.SetResolution(VRSettings.eyeTextureWidth, VRSettings.eyeTextureHeight, false);
         //Debug.Log((" width: " + VRSettings.eyeTextureWidth + "  height: " + VRSettings.eyeTextureHeight));
     }
 
     void Update()
     {
-        // Ray against objects in the scene.
-        RaycastHit rayCastHit;
-        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-        bool rayDidHit = Physics.Raycast(ray, out rayCastHit, 1000);
-        if (rayDidHit)
+        bool rayDidHit = false;
+        if (!(dragging && dontRayWhenDragging))
         {
-            hitPoint = rayCastHit.point;
-            hitNormal = rayCastHit.normal;
+            // Ray against objects in the scene.
+            RaycastHit rayCastHit;
+            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+            rayDidHit = Physics.Raycast(ray, out rayCastHit, 1000);
+            if (rayDidHit)
+            {
+                hitPoint = rayCastHit.point;
+                hitNormal = rayCastHit.normal;
+                hitTransform = rayCastHit.transform;
+                pointerZ = mainCamera.WorldToScreenPoint(hitPoint).z;
+                transform.position = hitPoint;
+                transform.up = flipNormal ? -hitNormal : hitNormal;
+            }
         }
+
+        // Snap to closest snap in screenspace, if any within radius.
+        var adjustedMousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, pointerZ);
+        foreach (var snap in snaps)
+        {
+            var screenPosition = mainCamera.WorldToScreenPoint(snap.position);
+            if (!(Mathf.Pow(Input.mousePosition.x - screenPosition.x, 2) +
+                  Mathf.Pow(Input.mousePosition.y - screenPosition.y, 2) < snapDistance * snapDistance)) continue;
+            adjustedMousePosition = screenPosition;
+            pointerZ = screenPosition.z;
+            transform.up = dragging ? snap.normal : -snap.normal;   // simulate male-female
+            transform.up = flipNormal ? -transform.up : transform.up;
+            break;
+        }
+        transform.position = mainCamera.ScreenToWorldPoint(adjustedMousePosition);
 
 
         if (dragging)
@@ -64,27 +92,7 @@ public class MousePointer : MonoBehaviour
                 flipNormal = !flipNormal;
             }
 
-            var adjustedMousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, hitPointZ);
-            transform.up = hitNormal;
-
-            // Snap to closest snap in screenspace, if any within radius.
-            foreach (var snap in snaps)
-            {
-                var screenPosition = mainCamera.WorldToScreenPoint(snap.position);
-                if (!(Mathf.Pow(Input.mousePosition.x - screenPosition.x, 2) +
-                      Mathf.Pow(Input.mousePosition.y - screenPosition.y, 2) < snapDistance * snapDistance)) continue;
-                adjustedMousePosition = screenPosition;
-                hitPointZ = screenPosition.z;
-                transform.up = snap.normal;
-                break;
-            }
-
-            transform.position = mainCamera.ScreenToWorldPoint(adjustedMousePosition);
-            if (flipNormal)
-            {
-                transform.up = -transform.up;
-            }
-
+            // Dragged object released.
             if (Input.GetMouseButtonUp(0))
             {
                 dragging = false;
@@ -92,20 +100,19 @@ public class MousePointer : MonoBehaviour
                 draggedObject.transform.parent = objectsGroup.transform;
                 draggedObject.GetComponent<Collider>().enabled = true;  // re-enable collider
                 DestroyVertexSnapsGroup();
+                snaps = GetUserSnaps();
             }
         }
-        else
+        else  // not dragging
         {
             if (rayDidHit)
             {
-                transform.position = hitPoint;
-                transform.up = hitNormal;
                 if (Input.GetMouseButtonDown(0))
                 {
                     dragging = true;
-                    draggedObject = rayCastHit.transform.gameObject;
+                    draggedObject = hitTransform.gameObject;
                     draggedObject.GetComponent<Collider>().enabled = false;  // disable collider -> disables raycasting against this object
-                    rayCastHit.transform.parent = transform; // parent object to pointer
+                    hitTransform.parent = transform; // parent object to pointer
 
                     snaps = new List<Snap>();
                     if (doVertexSnaps)
@@ -113,8 +120,7 @@ public class MousePointer : MonoBehaviour
                         snaps.AddRange(GetVertexSnaps());
                     }
                     snaps.AddRange(GetUserSnaps());
-                    hitPointZ = mainCamera.WorldToScreenPoint(hitPoint).z;
-                    //Debug.Log(hitPointZ);
+
                     material.color = new Color(0.11f, 0.88f, 0.09f, 0.62f);
                 }
                 else
@@ -129,12 +135,14 @@ public class MousePointer : MonoBehaviour
                     snap.position = hitPoint;
                     snap.normal = hitNormal;
                     var snapObject = InstantiateSnapObject(snap);
-                    snapObject.transform.parent = rayCastHit.transform;
+                    snapObject.transform.parent = hitTransform;
+                    snaps = GetUserSnaps();
                 }
             }
-            else  // no ray hit
+            else  // no ray hit, not dragging
             {
-                transform.position = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 5));   // FIXME make Z distance more general purpose
+                pointerZ = defaultPointerZ;
+                transform.position = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, pointerZ));
                 transform.forward = Vector3.up;
                 material.color = new Color(0, 0, 0, .3f);
             }
@@ -185,6 +193,15 @@ public class MousePointer : MonoBehaviour
     private List<Snap> GetUserSnaps()
     {
         var userSnaps = new List<Snap>();
+        var snapObjects = objectsGroup.GetComponentsInChildren<SnapObject>();
+        foreach (var snapObject in snapObjects)
+        {
+            var snap = new Snap();
+            snap.position = snapObject.transform.position;
+            snap.normal = snapObject.transform.up;
+            userSnaps.Add(snap);
+        }
+
         return userSnaps;
     }
 
