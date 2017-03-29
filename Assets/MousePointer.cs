@@ -42,7 +42,6 @@ public class MousePointer : MonoBehaviour
 
     void Update()
     {
-
         if (Input.GetMouseButtonDown(1))
         {
             flipNormal = !flipNormal;
@@ -89,18 +88,18 @@ public class MousePointer : MonoBehaviour
                     hitPointZ = camera.WorldToScreenPoint(hitPoint).z;
                     //Debug.Log(hitPointZ);
                     dragging = true;
-                    material.color = Color.green;
+                    material.color = new Color(0, 1, 0, .3f);
                 }
                 else
                 {
-                    material.color = Color.red;
+                    material.color = new Color(1,0,0,.3f);
                 }
             }
             else
             {
                 transform.position = camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 5));   // FIXME make Z distance more general purpose
                 transform.forward = Vector3.up;
-                material.color = Color.black;
+                material.color = new Color(0, 0, 0, .3f);
             }
         }
 
