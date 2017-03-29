@@ -99,7 +99,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 10726098}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: instance_39
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 51562914}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: instance_53
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,7 +157,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 66335074}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ID47 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 110102837}
   - component: {fileID: 110102839}
   - component: {fileID: 110102838}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MIDL_DSTL 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: d67e5764439d4194e975e56d973fd8ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -256,7 +256,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 147381653}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ID131 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -276,6 +276,93 @@ Transform:
   m_Father: {fileID: 1608549124}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &163636670
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 163636671}
+  - component: {fileID: 163636675}
+  - component: {fileID: 163636674}
+  - component: {fileID: 163636673}
+  - component: {fileID: 163636672}
+  m_Layer: 0
+  m_Name: OverlayCam
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &163636671
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 163636670}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &163636672
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 163636670}
+  m_Enabled: 1
+--- !u!124 &163636673
+Behaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 163636670}
+  m_Enabled: 1
+--- !u!92 &163636674
+Behaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 163636670}
+  m_Enabled: 1
+--- !u!20 &163636675
+Camera:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 163636670}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 3
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 256
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+  m_StereoMirrorMode: 0
 --- !u!1 &171105045
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,7 +371,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 171105046}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: instance_45
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,7 +400,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 175772018}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: instance_54
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -424,7 +511,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 198066203}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ID215 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -454,7 +541,7 @@ GameObject:
   - component: {fileID: 199778756}
   - component: {fileID: 199778755}
   m_Layer: 0
-  m_Name: Directional Light
+  m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -505,7 +592,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &209948048
 GameObject:
@@ -515,7 +602,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 209948049}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ID33 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -545,7 +632,7 @@ GameObject:
   - component: {fileID: 212168825}
   - component: {fileID: 212168827}
   - component: {fileID: 212168826}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PNKY_K1 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -580,7 +667,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: d67e5764439d4194e975e56d973fd8ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -698,7 +785,7 @@ GameObject:
   - component: {fileID: 294866516}
   - component: {fileID: 294866518}
   - component: {fileID: 294866517}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PNKY_DSTL 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -733,7 +820,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: d67e5764439d4194e975e56d973fd8ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -770,7 +857,7 @@ GameObject:
   - component: {fileID: 315531150}
   - component: {fileID: 315531149}
   - component: {fileID: 315531148}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SnapPointObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -790,7 +877,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 95d2f408f8f06f541be24eb30bf4be4b, type: 2}
+  - {fileID: 2100000, guid: 8e63b20adf848d945a8e9da4e1706521, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -834,11 +921,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 315531147}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.9455667, y: 3.7782269, z: 4.23}
-  m_LocalScale: {x: 0.023394743, y: 0.023394743, z: 0.023394743}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &318485373
 GameObject:
@@ -931,7 +1018,7 @@ GameObject:
   - component: {fileID: 319401930}
   - component: {fileID: 319401932}
   - component: {fileID: 319401931}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RING_INTR 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -966,7 +1053,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: d67e5764439d4194e975e56d973fd8ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1000,7 +1087,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 330354508}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ID201 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1030,7 +1117,7 @@ GameObject:
   - component: {fileID: 438958953}
   - component: {fileID: 438958955}
   - component: {fileID: 438958954}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PNKY_PROX 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1065,7 +1152,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: d67e5764439d4194e975e56d973fd8ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1104,7 +1191,7 @@ GameObject:
   - component: {fileID: 440486801}
   - component: {fileID: 440486800}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: MainCam
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1172,7 +1259,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 440486799}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 1.14}
+  m_LocalPosition: {x: 0, y: 1, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1112326634}
@@ -1189,7 +1276,7 @@ GameObject:
   - component: {fileID: 451456641}
   - component: {fileID: 451456643}
   - component: {fileID: 451456642}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: THMB_K1 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1224,7 +1311,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: d67e5764439d4194e975e56d973fd8ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1260,7 +1347,7 @@ GameObject:
   - component: {fileID: 561081607}
   - component: {fileID: 561081609}
   - component: {fileID: 561081608}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PNKY_INTR 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1295,7 +1382,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: d67e5764439d4194e975e56d973fd8ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1329,7 +1416,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 561552397}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ID271 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1357,7 +1444,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 561958959}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ID145 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1459,7 +1546,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 605284311}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ID159 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1489,7 +1576,7 @@ GameObject:
   - component: {fileID: 613633020}
   - component: {fileID: 613633022}
   - component: {fileID: 613633021}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RING_K3 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1524,7 +1611,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: d67e5764439d4194e975e56d973fd8ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1558,7 +1645,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 617927148}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ID89 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1586,7 +1673,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 632648436}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: instance_38
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1617,7 +1704,7 @@ GameObject:
   - component: {fileID: 654586138}
   - component: {fileID: 654586140}
   - component: {fileID: 654586139}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MIDL_K2 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1652,7 +1739,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: d67e5764439d4194e975e56d973fd8ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1686,7 +1773,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 661332506}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ID61 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1714,7 +1801,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 710337489}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ID257 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1744,7 +1831,7 @@ GameObject:
   - component: {fileID: 720899433}
   - component: {fileID: 720899435}
   - component: {fileID: 720899434}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MIDL_K3 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1779,7 +1866,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: d67e5764439d4194e975e56d973fd8ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1815,7 +1902,7 @@ GameObject:
   - component: {fileID: 728046426}
   - component: {fileID: 728046428}
   - component: {fileID: 728046427}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: INDX_PROX 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1850,7 +1937,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: d67e5764439d4194e975e56d973fd8ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1884,7 +1971,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 748903870}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: instance_55
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1915,7 +2002,7 @@ GameObject:
   - component: {fileID: 754883538}
   - component: {fileID: 754883540}
   - component: {fileID: 754883539}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PNKY_K2 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1950,7 +2037,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: d67e5764439d4194e975e56d973fd8ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1984,7 +2071,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 781275741}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ID411 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2014,7 +2101,7 @@ GameObject:
   - component: {fileID: 786356825}
   - component: {fileID: 786356827}
   - component: {fileID: 786356826}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: THMB_K2 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2049,7 +2136,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: d67e5764439d4194e975e56d973fd8ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2083,7 +2170,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 787509774}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2112,7 +2199,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 821838160}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ID117 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2140,7 +2227,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 824447346}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: instance_59
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2169,7 +2256,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 845257889}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ID173 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2199,7 +2286,7 @@ GameObject:
   - component: {fileID: 860112645}
   - component: {fileID: 860112647}
   - component: {fileID: 860112646}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RING_PROX 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2234,7 +2321,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: d67e5764439d4194e975e56d973fd8ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2268,7 +2355,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 863531085}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HAND-JNTD-FLAT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2325,7 +2412,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 882876164}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: instance_48
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2406,7 +2493,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &901052683
 GameObject:
@@ -2416,7 +2503,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 901052684}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ID397 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2444,7 +2531,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 909129261}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ID243 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2472,7 +2559,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 910941338}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: instance_35
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2501,7 +2588,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 929714905}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: instance_56
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2532,7 +2619,7 @@ GameObject:
   - component: {fileID: 945664439}
   - component: {fileID: 945664441}
   - component: {fileID: 945664440}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PALM 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2566,8 +2653,8 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2100000, guid: d67e5764439d4194e975e56d973fd8ea, type: 2}
+  - {fileID: 2100000, guid: d67e5764439d4194e975e56d973fd8ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2601,7 +2688,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 953083038}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: instance_47
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2630,7 +2717,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 997743267}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: instance_43
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2659,7 +2746,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1015216951}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ID327 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2687,7 +2774,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1104263173}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: instance_57
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2719,7 +2806,7 @@ GameObject:
   - component: {fileID: 1112326633}
   - component: {fileID: 1112326631}
   - component: {fileID: 1112326635}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pointer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2800,7 +2887,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1149270020}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: instance_41
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2829,7 +2916,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1156300311}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: instance_46
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2858,7 +2945,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1161360063}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: instance_49
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2889,7 +2976,7 @@ GameObject:
   - component: {fileID: 1196935799}
   - component: {fileID: 1196935801}
   - component: {fileID: 1196935800}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RING_K2 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2924,7 +3011,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: d67e5764439d4194e975e56d973fd8ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2958,7 +3045,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1236936292}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ID341 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2986,7 +3073,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1240170404}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: instance_58
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3017,7 +3104,7 @@ GameObject:
   - component: {fileID: 1253807831}
   - component: {fileID: 1253807833}
   - component: {fileID: 1253807832}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PNKY_K3 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3052,7 +3139,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: d67e5764439d4194e975e56d973fd8ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3086,7 +3173,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1278995281}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: instance_52
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3198,7 +3285,7 @@ GameObject:
   - component: {fileID: 1305816668}
   - component: {fileID: 1305816670}
   - component: {fileID: 1305816669}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: INDX_DSTL 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3233,7 +3320,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: d67e5764439d4194e975e56d973fd8ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3269,7 +3356,7 @@ GameObject:
   - component: {fileID: 1336644203}
   - component: {fileID: 1336644205}
   - component: {fileID: 1336644204}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MIDL_PROX 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3304,7 +3391,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: d67e5764439d4194e975e56d973fd8ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3338,7 +3425,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1339028495}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: instance_40
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3367,7 +3454,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1406517755}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ID369 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3397,7 +3484,7 @@ GameObject:
   - component: {fileID: 1423303496}
   - component: {fileID: 1423303498}
   - component: {fileID: 1423303497}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: THMB_PROX 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3432,7 +3519,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: d67e5764439d4194e975e56d973fd8ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3466,7 +3553,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1460076738}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: instance_50
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3495,7 +3582,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1481982071}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ID383 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3523,7 +3610,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1505337644}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ID313 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3551,7 +3638,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1508998328}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ID299 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3581,7 +3668,7 @@ GameObject:
   - component: {fileID: 1555171627}
   - component: {fileID: 1555171629}
   - component: {fileID: 1555171628}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: INDX_K3 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3616,7 +3703,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: d67e5764439d4194e975e56d973fd8ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3731,7 +3818,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1573325703}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: instance_42
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3760,7 +3847,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1591241152}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: instance_32
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3789,7 +3876,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1592512662}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ID75 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3819,7 +3906,7 @@ GameObject:
   - component: {fileID: 1608549124}
   - component: {fileID: 1608549126}
   - component: {fileID: 1608549125}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RING_K1 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3854,7 +3941,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: d67e5764439d4194e975e56d973fd8ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3888,7 +3975,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1627556696}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ID285 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3916,7 +4003,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1679663533}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: instance_44
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3947,7 +4034,7 @@ GameObject:
   - component: {fileID: 1778877368}
   - component: {fileID: 1778877370}
   - component: {fileID: 1778877369}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: INDX_K2 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3982,7 +4069,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: d67e5764439d4194e975e56d973fd8ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4016,7 +4103,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1786341836}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: instance_37
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4045,7 +4132,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1798073196}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: instance_31
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4074,7 +4161,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1798543243}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: instance_34
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4181,7 +4268,7 @@ RectTransform:
   m_Children:
   - {fileID: 589939894}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4198,7 +4285,7 @@ GameObject:
   - component: {fileID: 1840543385}
   - component: {fileID: 1840543387}
   - component: {fileID: 1840543386}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: INDX_INTR 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4233,7 +4320,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: d67e5764439d4194e975e56d973fd8ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4267,7 +4354,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1885410049}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ID229 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4297,7 +4384,7 @@ GameObject:
   - component: {fileID: 1925823074}
   - component: {fileID: 1925823076}
   - component: {fileID: 1925823075}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RING_DSTL 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4332,7 +4419,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: d67e5764439d4194e975e56d973fd8ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4366,7 +4453,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1928367923}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: instance_51
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4397,7 +4484,7 @@ GameObject:
   - component: {fileID: 1934601073}
   - component: {fileID: 1934601075}
   - component: {fileID: 1934601074}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MIDL_K1 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4432,7 +4519,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: d67e5764439d4194e975e56d973fd8ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4466,7 +4553,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2020287562}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ID187 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4496,7 +4583,7 @@ GameObject:
   - component: {fileID: 2069075613}
   - component: {fileID: 2069075615}
   - component: {fileID: 2069075614}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: THMB_DSTL 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4530,7 +4617,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: d67e5764439d4194e975e56d973fd8ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4564,7 +4651,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2071714483}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: instance_33
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4593,7 +4680,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2075643306}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ID355 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4622,7 +4709,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2087850179}
   m_Layer: 0
-  m_Name: objects
+  m_Name: Objects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4644,7 +4731,7 @@ Transform:
   - {fileID: 181850796}
   - {fileID: 1294830899}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2112991468
 GameObject:
@@ -4656,7 +4743,7 @@ GameObject:
   - component: {fileID: 2112991469}
   - component: {fileID: 2112991471}
   - component: {fileID: 2112991470}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: INDX_K1 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4691,7 +4778,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: d67e5764439d4194e975e56d973fd8ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4727,7 +4814,7 @@ GameObject:
   - component: {fileID: 2123767482}
   - component: {fileID: 2123767484}
   - component: {fileID: 2123767483}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MIDL_INTR 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4762,7 +4849,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: d67e5764439d4194e975e56d973fd8ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4796,7 +4883,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2138950017}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: instance_36
   m_TagString: Untagged
   m_Icon: {fileID: 0}
