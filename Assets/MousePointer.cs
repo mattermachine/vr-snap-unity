@@ -21,6 +21,8 @@ public class MousePointer : MonoBehaviour
     private Vector3 hitNormal;
     private bool flipNormal = false;
 
+    public float snapDistance = 5;  // snap radius in pixels
+
     struct Snap
     {
         public Vector3 position;
@@ -55,7 +57,7 @@ public class MousePointer : MonoBehaviour
             foreach (var snap in snaps)
             {
                 var screenPosition = camera.WorldToScreenPoint(snap.position);
-                if (Mathf.Pow(Input.mousePosition.x - screenPosition.x, 2) + Mathf.Pow(Input.mousePosition.y - screenPosition.y, 2) < 10 * 10)  // 10px snapping radius
+                if (Mathf.Pow(Input.mousePosition.x - screenPosition.x, 2) + Mathf.Pow(Input.mousePosition.y - screenPosition.y, 2) < snapDistance * snapDistance)  // 10px snapping radius
                 {
                     adjustedMousePosition = screenPosition;
                     hitPointZ = screenPosition.z;
