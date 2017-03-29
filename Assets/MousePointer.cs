@@ -17,8 +17,9 @@ public class MousePointer : MonoBehaviour
     private float hitPointZ;
     private GameObject hitObject;
     private List<Snap> snaps;
-    Vector3 hitPoint;
-    Vector3 hitNormal;
+    private Vector3 hitPoint;
+    private Vector3 hitNormal;
+    private bool flipNormal = false;
 
     struct Snap
     {
@@ -42,9 +43,15 @@ public class MousePointer : MonoBehaviour
     void Update()
     {
 
+        if (Input.GetMouseButtonDown(1))
+        {
+            flipNormal = !flipNormal;
+        }
+
         if (dragging)
         {
             var adjustedMousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, hitPointZ);
+            //transform.up = flipNormal ? -hitNormal : hitNormal;
             transform.up = hitNormal;
             foreach (var snap in snaps)
             {
@@ -58,6 +65,10 @@ public class MousePointer : MonoBehaviour
                 }
             }
             transform.position = camera.ScreenToWorldPoint(adjustedMousePosition);
+            if (flipNormal)
+            {
+                transform.up = -transform.up;
+            }
         }
         else
         {
@@ -97,6 +108,7 @@ public class MousePointer : MonoBehaviour
         {
             dragging = false;
             hitObject.transform.parent = objectsGroup.transform;
+            DestroySnapsGroup();
         }
 
         //text.text = (" width: " + VRSettings.eyeTextureWidth + "  height: " + VRSettings.eyeTextureHeight);
@@ -120,11 +132,7 @@ public class MousePointer : MonoBehaviour
                 snaps.Add(snap);
             }
         }
-
-        if (snapsGroup != null)
-        {
-            GameObject.DestroyImmediate(snapsGroup);
-        }
+        DestroySnapsGroup();
         snapsGroup = new GameObject();
         foreach (var snap in snaps)
         {
@@ -135,5 +143,13 @@ public class MousePointer : MonoBehaviour
         }
 
         return snaps;
+    }
+
+    void DestroySnapsGroup()
+    {
+        if (snapsGroup != null)
+        {
+            GameObject.DestroyImmediate(snapsGroup);
+        }
     }
 }
