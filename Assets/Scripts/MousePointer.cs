@@ -44,6 +44,17 @@ public class MousePointer : MonoBehaviour
 
     void Update()
     {
+        // Ray against objects in the scene.
+        RaycastHit rayCastHit;
+        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+        bool rayDidHit = Physics.Raycast(ray, out rayCastHit, 1000);
+        if (rayDidHit)
+        {
+            hitPoint = rayCastHit.point;
+            hitNormal = rayCastHit.normal;
+        }
+
+
         if (dragging)
         {
             // When dragging, RMB flips the dragged object along the pointer normal.
@@ -78,23 +89,21 @@ public class MousePointer : MonoBehaviour
                 dragging = false;
                 flipNormal = false;
                 draggedObject.transform.parent = objectsGroup.transform;
+                draggedObject.GetComponent<Collider>().enabled = true;  // re-enable collider
                 DestroyVertexSnapsGroup();
             }
         }
         else
         {
-            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit rayCastHit;
-            if (Physics.Raycast(ray, out rayCastHit, 1000))
+            if (rayDidHit)
             {
-                hitPoint = rayCastHit.point;
-                hitNormal = rayCastHit.normal;
                 transform.position = hitPoint;
                 transform.up = hitNormal;
                 if (Input.GetMouseButtonDown(0))
                 {
                     // parent object to pointer
                     draggedObject = rayCastHit.transform.gameObject;
+                    draggedObject.GetComponent<Collider>().enabled = false;  // disable collider -> disables raycasting against this object
                     rayCastHit.transform.parent = transform;
                     snaps = GetVertexSnaps();
                     snaps.AddRange(GetUserSnaps());
@@ -118,7 +127,7 @@ public class MousePointer : MonoBehaviour
                     snapObject.transform.parent = rayCastHit.transform;
                 }
             }
-            else
+            else  // no ray hit
             {
                 transform.position = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 5));   // FIXME make Z distance more general purpose
                 transform.forward = Vector3.up;
