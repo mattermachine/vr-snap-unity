@@ -34,7 +34,7 @@ public class MousePointer : MonoBehaviour
     void Start()
     {
         camera = transform.parent.GetComponent<Camera>();
-        material = gameObject.GetComponent<Renderer>().material;
+        material = gameObject.GetComponent<Renderer>().sharedMaterial;
         VRSettings.showDeviceView = true;
         //Screen.SetResolution(VRSettings.eyeTextureWidth, VRSettings.eyeTextureHeight, false);
         //Debug.Log((" width: " + VRSettings.eyeTextureWidth + "  height: " + VRSettings.eyeTextureHeight));
