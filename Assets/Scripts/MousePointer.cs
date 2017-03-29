@@ -20,6 +20,7 @@ public class MousePointer : MonoBehaviour
     private Vector3 hitPoint;
     private Vector3 hitNormal;
     private bool flipNormal = false;
+    public bool doVertexSnaps = true;
 
     public float snapDistance = 5;  // snap radius in pixels
 
@@ -101,15 +102,19 @@ public class MousePointer : MonoBehaviour
                 transform.up = hitNormal;
                 if (Input.GetMouseButtonDown(0))
                 {
-                    // parent object to pointer
+                    dragging = true;
                     draggedObject = rayCastHit.transform.gameObject;
                     draggedObject.GetComponent<Collider>().enabled = false;  // disable collider -> disables raycasting against this object
-                    rayCastHit.transform.parent = transform;
-                    snaps = GetVertexSnaps();
+                    rayCastHit.transform.parent = transform; // parent object to pointer
+
+                    snaps = new List<Snap>();
+                    if (doVertexSnaps)
+                    {
+                        snaps.AddRange(GetVertexSnaps());
+                    }
                     snaps.AddRange(GetUserSnaps());
                     hitPointZ = mainCamera.WorldToScreenPoint(hitPoint).z;
                     //Debug.Log(hitPointZ);
-                    dragging = true;
                     material.color = new Color(0.11f, 0.88f, 0.09f, 0.62f);
                 }
                 else
