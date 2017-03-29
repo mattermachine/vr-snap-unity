@@ -1,0 +1,573 @@
+fileFormatVersion: 2
+guid: e19c3f10b5e40d846bed79ec38f6f5b9
+timeCreated: 1490751604
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: HAND-JNTD-FIST
+    100002: HAND-JNTD-FLAT
+    100004: ID117
+    100006: ID117 1
+    100008: ID131
+    100010: ID131 1
+    100012: ID145
+    100014: ID145 1
+    100016: ID159
+    100018: ID159 1
+    100020: ID173
+    100022: ID173 1
+    100024: ID187
+    100026: ID187 1
+    100028: ID201
+    100030: ID201 1
+    100032: ID215
+    100034: ID215 1
+    100036: ID229
+    100038: ID229 1
+    100040: ID243
+    100042: ID243 1
+    100044: ID257
+    100046: ID257 1
+    100048: ID271
+    100050: ID271 1
+    100052: ID285
+    100054: ID285 1
+    100056: ID299
+    100058: ID299 1
+    100060: ID313
+    100062: ID313 1
+    100064: ID327
+    100066: ID327 1
+    100068: ID33
+    100070: ID33 1
+    100072: ID341
+    100074: ID341 1
+    100076: ID355
+    100078: ID355 1
+    100080: ID369
+    100082: ID369 1
+    100084: ID383
+    100086: ID383 1
+    100088: ID397
+    100090: ID397 1
+    100092: ID411
+    100094: ID411 1
+    100096: ID47
+    100098: ID47 1
+    100100: ID61
+    100102: ID61 1
+    100104: ID75
+    100106: ID75 1
+    100108: ID89
+    100110: ID89 1
+    100112: INDX_DSTL
+    100114: INDX_DSTL 1
+    100116: INDX_INTR
+    100118: INDX_INTR 1
+    100120: INDX_K1
+    100122: INDX_K1 1
+    100124: INDX_K2
+    100126: INDX_K2 1
+    100128: INDX_K3
+    100130: INDX_K3 1
+    100132: INDX_PROX
+    100134: INDX_PROX 1
+    100136: instance_0
+    100138: instance_1
+    100140: instance_10
+    100142: instance_11
+    100144: instance_12
+    100146: instance_13
+    100148: instance_14
+    100150: instance_15
+    100152: instance_16
+    100154: instance_17
+    100156: instance_18
+    100158: instance_19
+    100160: instance_2
+    100162: instance_20
+    100164: instance_21
+    100166: instance_22
+    100168: instance_23
+    100170: instance_24
+    100172: instance_25
+    100174: instance_26
+    100176: instance_27
+    100178: instance_28
+    100180: instance_29
+    100182: instance_3
+    100184: instance_30
+    100186: instance_31
+    100188: instance_32
+    100190: instance_33
+    100192: instance_34
+    100194: instance_35
+    100196: instance_36
+    100198: instance_37
+    100200: instance_38
+    100202: instance_39
+    100204: instance_4
+    100206: instance_40
+    100208: instance_41
+    100210: instance_42
+    100212: instance_43
+    100214: instance_44
+    100216: instance_45
+    100218: instance_46
+    100220: instance_47
+    100222: instance_48
+    100224: instance_49
+    100226: instance_5
+    100228: instance_50
+    100230: instance_51
+    100232: instance_52
+    100234: instance_53
+    100236: instance_54
+    100238: instance_55
+    100240: instance_56
+    100242: instance_57
+    100244: instance_58
+    100246: instance_59
+    100248: instance_6
+    100250: instance_7
+    100252: instance_8
+    100254: instance_9
+    100256: MIDL_DSTL
+    100258: MIDL_DSTL 1
+    100260: MIDL_INTR
+    100262: MIDL_INTR 1
+    100264: MIDL_K1
+    100266: MIDL_K1 1
+    100268: MIDL_K2
+    100270: MIDL_K2 1
+    100272: MIDL_K3
+    100274: MIDL_K3 1
+    100276: MIDL_PROX
+    100278: MIDL_PROX 1
+    100280: //RootNode
+    100282: PALM
+    100284: PALM 1
+    100286: PNKY_DSTL
+    100288: PNKY_DSTL 1
+    100290: PNKY_INTR
+    100292: PNKY_INTR 1
+    100294: PNKY_K1
+    100296: PNKY_K1 1
+    100298: PNKY_K2
+    100300: PNKY_K2 1
+    100302: PNKY_K3
+    100304: PNKY_K3 1
+    100306: PNKY_PROX
+    100308: PNKY_PROX 1
+    100310: RING_DSTL
+    100312: RING_DSTL 1
+    100314: RING_INTR
+    100316: RING_INTR 1
+    100318: RING_K1
+    100320: RING_K1 1
+    100322: RING_K2
+    100324: RING_K2 1
+    100326: RING_K3
+    100328: RING_K3 1
+    100330: RING_PROX
+    100332: RING_PROX 1
+    100334: skp_camera_Last_Saved_SketchUp_View
+    100336: THMB_DSTL
+    100338: THMB_DSTL 1
+    100340: THMB_K1
+    100342: THMB_K1 1
+    100344: THMB_K2
+    100346: THMB_K2 1
+    100348: THMB_PROX
+    100350: THMB_PROX 1
+    400000: HAND-JNTD-FIST
+    400002: HAND-JNTD-FLAT
+    400004: ID117
+    400006: ID117 1
+    400008: ID131
+    400010: ID131 1
+    400012: ID145
+    400014: ID145 1
+    400016: ID159
+    400018: ID159 1
+    400020: ID173
+    400022: ID173 1
+    400024: ID187
+    400026: ID187 1
+    400028: ID201
+    400030: ID201 1
+    400032: ID215
+    400034: ID215 1
+    400036: ID229
+    400038: ID229 1
+    400040: ID243
+    400042: ID243 1
+    400044: ID257
+    400046: ID257 1
+    400048: ID271
+    400050: ID271 1
+    400052: ID285
+    400054: ID285 1
+    400056: ID299
+    400058: ID299 1
+    400060: ID313
+    400062: ID313 1
+    400064: ID327
+    400066: ID327 1
+    400068: ID33
+    400070: ID33 1
+    400072: ID341
+    400074: ID341 1
+    400076: ID355
+    400078: ID355 1
+    400080: ID369
+    400082: ID369 1
+    400084: ID383
+    400086: ID383 1
+    400088: ID397
+    400090: ID397 1
+    400092: ID411
+    400094: ID411 1
+    400096: ID47
+    400098: ID47 1
+    400100: ID61
+    400102: ID61 1
+    400104: ID75
+    400106: ID75 1
+    400108: ID89
+    400110: ID89 1
+    400112: INDX_DSTL
+    400114: INDX_DSTL 1
+    400116: INDX_INTR
+    400118: INDX_INTR 1
+    400120: INDX_K1
+    400122: INDX_K1 1
+    400124: INDX_K2
+    400126: INDX_K2 1
+    400128: INDX_K3
+    400130: INDX_K3 1
+    400132: INDX_PROX
+    400134: INDX_PROX 1
+    400136: instance_0
+    400138: instance_1
+    400140: instance_10
+    400142: instance_11
+    400144: instance_12
+    400146: instance_13
+    400148: instance_14
+    400150: instance_15
+    400152: instance_16
+    400154: instance_17
+    400156: instance_18
+    400158: instance_19
+    400160: instance_2
+    400162: instance_20
+    400164: instance_21
+    400166: instance_22
+    400168: instance_23
+    400170: instance_24
+    400172: instance_25
+    400174: instance_26
+    400176: instance_27
+    400178: instance_28
+    400180: instance_29
+    400182: instance_3
+    400184: instance_30
+    400186: instance_31
+    400188: instance_32
+    400190: instance_33
+    400192: instance_34
+    400194: instance_35
+    400196: instance_36
+    400198: instance_37
+    400200: instance_38
+    400202: instance_39
+    400204: instance_4
+    400206: instance_40
+    400208: instance_41
+    400210: instance_42
+    400212: instance_43
+    400214: instance_44
+    400216: instance_45
+    400218: instance_46
+    400220: instance_47
+    400222: instance_48
+    400224: instance_49
+    400226: instance_5
+    400228: instance_50
+    400230: instance_51
+    400232: instance_52
+    400234: instance_53
+    400236: instance_54
+    400238: instance_55
+    400240: instance_56
+    400242: instance_57
+    400244: instance_58
+    400246: instance_59
+    400248: instance_6
+    400250: instance_7
+    400252: instance_8
+    400254: instance_9
+    400256: MIDL_DSTL
+    400258: MIDL_DSTL 1
+    400260: MIDL_INTR
+    400262: MIDL_INTR 1
+    400264: MIDL_K1
+    400266: MIDL_K1 1
+    400268: MIDL_K2
+    400270: MIDL_K2 1
+    400272: MIDL_K3
+    400274: MIDL_K3 1
+    400276: MIDL_PROX
+    400278: MIDL_PROX 1
+    400280: //RootNode
+    400282: PALM
+    400284: PALM 1
+    400286: PNKY_DSTL
+    400288: PNKY_DSTL 1
+    400290: PNKY_INTR
+    400292: PNKY_INTR 1
+    400294: PNKY_K1
+    400296: PNKY_K1 1
+    400298: PNKY_K2
+    400300: PNKY_K2 1
+    400302: PNKY_K3
+    400304: PNKY_K3 1
+    400306: PNKY_PROX
+    400308: PNKY_PROX 1
+    400310: RING_DSTL
+    400312: RING_DSTL 1
+    400314: RING_INTR
+    400316: RING_INTR 1
+    400318: RING_K1
+    400320: RING_K1 1
+    400322: RING_K2
+    400324: RING_K2 1
+    400326: RING_K3
+    400328: RING_K3 1
+    400330: RING_PROX
+    400332: RING_PROX 1
+    400334: skp_camera_Last_Saved_SketchUp_View
+    400336: THMB_DSTL
+    400338: THMB_DSTL 1
+    400340: THMB_K1
+    400342: THMB_K1 1
+    400344: THMB_K2
+    400346: THMB_K2 1
+    400348: THMB_PROX
+    400350: THMB_PROX 1
+    2300000: INDX_DSTL
+    2300002: INDX_DSTL 1
+    2300004: INDX_INTR
+    2300006: INDX_INTR 1
+    2300008: INDX_K1
+    2300010: INDX_K1 1
+    2300012: INDX_K2
+    2300014: INDX_K2 1
+    2300016: INDX_K3
+    2300018: INDX_K3 1
+    2300020: INDX_PROX
+    2300022: INDX_PROX 1
+    2300024: MIDL_DSTL
+    2300026: MIDL_DSTL 1
+    2300028: MIDL_INTR
+    2300030: MIDL_INTR 1
+    2300032: MIDL_K1
+    2300034: MIDL_K1 1
+    2300036: MIDL_K2
+    2300038: MIDL_K2 1
+    2300040: MIDL_K3
+    2300042: MIDL_K3 1
+    2300044: MIDL_PROX
+    2300046: MIDL_PROX 1
+    2300048: PALM
+    2300050: PALM 1
+    2300052: PNKY_DSTL
+    2300054: PNKY_DSTL 1
+    2300056: PNKY_INTR
+    2300058: PNKY_INTR 1
+    2300060: PNKY_K1
+    2300062: PNKY_K1 1
+    2300064: PNKY_K2
+    2300066: PNKY_K2 1
+    2300068: PNKY_K3
+    2300070: PNKY_K3 1
+    2300072: PNKY_PROX
+    2300074: PNKY_PROX 1
+    2300076: RING_DSTL
+    2300078: RING_DSTL 1
+    2300080: RING_INTR
+    2300082: RING_INTR 1
+    2300084: RING_K1
+    2300086: RING_K1 1
+    2300088: RING_K2
+    2300090: RING_K2 1
+    2300092: RING_K3
+    2300094: RING_K3 1
+    2300096: RING_PROX
+    2300098: RING_PROX 1
+    2300100: THMB_DSTL
+    2300102: THMB_DSTL 1
+    2300104: THMB_K1
+    2300106: THMB_K1 1
+    2300108: THMB_K2
+    2300110: THMB_K2 1
+    2300112: THMB_PROX
+    2300114: THMB_PROX 1
+    3300000: INDX_DSTL
+    3300002: INDX_DSTL 1
+    3300004: INDX_INTR
+    3300006: INDX_INTR 1
+    3300008: INDX_K1
+    3300010: INDX_K1 1
+    3300012: INDX_K2
+    3300014: INDX_K2 1
+    3300016: INDX_K3
+    3300018: INDX_K3 1
+    3300020: INDX_PROX
+    3300022: INDX_PROX 1
+    3300024: MIDL_DSTL
+    3300026: MIDL_DSTL 1
+    3300028: MIDL_INTR
+    3300030: MIDL_INTR 1
+    3300032: MIDL_K1
+    3300034: MIDL_K1 1
+    3300036: MIDL_K2
+    3300038: MIDL_K2 1
+    3300040: MIDL_K3
+    3300042: MIDL_K3 1
+    3300044: MIDL_PROX
+    3300046: MIDL_PROX 1
+    3300048: PALM
+    3300050: PALM 1
+    3300052: PNKY_DSTL
+    3300054: PNKY_DSTL 1
+    3300056: PNKY_INTR
+    3300058: PNKY_INTR 1
+    3300060: PNKY_K1
+    3300062: PNKY_K1 1
+    3300064: PNKY_K2
+    3300066: PNKY_K2 1
+    3300068: PNKY_K3
+    3300070: PNKY_K3 1
+    3300072: PNKY_PROX
+    3300074: PNKY_PROX 1
+    3300076: RING_DSTL
+    3300078: RING_DSTL 1
+    3300080: RING_INTR
+    3300082: RING_INTR 1
+    3300084: RING_K1
+    3300086: RING_K1 1
+    3300088: RING_K2
+    3300090: RING_K2 1
+    3300092: RING_K3
+    3300094: RING_K3 1
+    3300096: RING_PROX
+    3300098: RING_PROX 1
+    3300100: THMB_DSTL
+    3300102: THMB_DSTL 1
+    3300104: THMB_K1
+    3300106: THMB_K1 1
+    3300108: THMB_K2
+    3300110: THMB_K2 1
+    3300112: THMB_PROX
+    3300114: THMB_PROX 1
+    4300000: THMB_DSTL
+    4300002: THMB_K2
+    4300004: INDX_K1
+    4300006: MIDL_K2
+    4300008: INDX_K3
+    4300010: MIDL_K3
+    4300012: PALM
+    4300014: MIDL_INTR
+    4300016: RING_K1
+    4300018: THMB_K1
+    4300020: PNKY_PROX
+    4300022: RING_INTR
+    4300024: INDX_INTR
+    4300026: INDX_K2
+    4300028: MIDL_K1
+    4300030: RING_K2
+    4300032: INDX_PROX
+    4300034: MIDL_PROX
+    4300036: THMB_PROX
+    4300038: RING_PROX
+    4300040: INDX_DSTL
+    4300042: RING_DSTL
+    4300044: RING_K3
+    4300046: PNKY_K1
+    4300048: MIDL_DSTL
+    4300050: PNKY_INTR
+    4300052: PNKY_K3
+    4300054: PNKY_DSTL
+    4300056: PNKY_K2
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
