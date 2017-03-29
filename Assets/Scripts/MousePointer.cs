@@ -15,7 +15,7 @@ public class MousePointer : MonoBehaviour
     private Material material;
     private bool dragging = false;
     private float hitPointZ;
-    private GameObject hitObject;
+    private GameObject draggedObject;
     private List<Snap> snaps;
     private Vector3 hitPoint;
     private Vector3 hitNormal;
@@ -44,7 +44,6 @@ public class MousePointer : MonoBehaviour
 
     void Update()
     {
-
         if (dragging)
         {
             // When dragging, RMB flips the dragged object along the pointer normal.
@@ -73,6 +72,14 @@ public class MousePointer : MonoBehaviour
             {
                 transform.up = -transform.up;
             }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                dragging = false;
+                flipNormal = false;
+                draggedObject.transform.parent = objectsGroup.transform;
+                DestroyVertexSnapsGroup();
+            }
         }
         else
         {
@@ -87,9 +94,9 @@ public class MousePointer : MonoBehaviour
                 if (Input.GetMouseButtonDown(0))
                 {
                     // parent object to pointer
-                    hitObject = rayCastHit.transform.gameObject;
+                    draggedObject = rayCastHit.transform.gameObject;
                     rayCastHit.transform.parent = transform;
-                    snaps = GetSnaps();
+                    snaps = GetVertexSnaps();
                     snaps.AddRange(GetUserSnaps());
                     hitPointZ = mainCamera.WorldToScreenPoint(hitPoint).z;
                     //Debug.Log(hitPointZ);
@@ -102,7 +109,7 @@ public class MousePointer : MonoBehaviour
                 }
                 if (Input.GetMouseButtonUp(1))
                 {
-                    flipNormal = !flipNormal;
+                    // create snap point at pointer
                 }
             }
             else
@@ -113,22 +120,15 @@ public class MousePointer : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonUp(0))
-        {
-            dragging = false;
-            flipNormal = false;
-            hitObject.transform.parent = objectsGroup.transform;
-            DestroySnapsGroup();
-        }
-
         //text.text = (" width: " + VRSettings.eyeTextureWidth + "  height: " + VRSettings.eyeTextureHeight);
         text.text = ("x: " + Input.mousePosition.x + " y: " + Input.mousePosition.y);
     }
 
-    private List<Snap> GetSnaps()
+    // Creates snaps at vertices, on-the-fly.
+    private List<Snap> GetVertexSnaps()
     {
         MeshFilter[] meshFilters = objectsGroup.GetComponentsInChildren<MeshFilter>();
-        var snaps = new List<Snap>();
+        var vertexSnaps = new List<Snap>();
         foreach (var meshFilter in meshFilters)
         {
             var tmpTransform = meshFilter.transform;
@@ -139,13 +139,19 @@ public class MousePointer : MonoBehaviour
                 var snap = new Snap();
                 snap.position = tmpTransform.TransformPoint(vertices[i]);
                 snap.normal = tmpTransform.TransformVector(normals[i]);
-                snaps.Add(snap);
+                vertexSnaps.Add(snap);
             }
         }
-        DestroySnapsGroup();
+        DestroyVertexSnapsGroup();
         snapsGroup = new GameObject();
-        foreach (var snap in snaps)
+        foreach (var snap in vertexSnaps)
         {
+            var snapObject = InstantiateSnapObject(snap);
+            snapObject.transform.parent = snapsGroup.transform;
+        }
+
+        return vertexSnaps;
+    }
 
     // Gathers all valid user-created snaps from object in the scene.
     private List<Snap> GetUserSnaps()
@@ -154,20 +160,19 @@ public class MousePointer : MonoBehaviour
         return userSnaps;
     }
 
-            var snapObject = GameObject.Instantiate(snapPointObject) as GameObject;
-            snapObject.transform.position = snap.position;
-            snapObject.transform.up = snap.normal;
-            snapObject.transform.parent = snapsGroup.transform;
-        }
-
-        return snaps;
-    }
-
-    private void DestroySnapsGroup()
+    private void DestroyVertexSnapsGroup()
     {
         if (snapsGroup != null)
         {
-            GameObject.DestroyImmediate(snapsGroup);
+            DestroyImmediate(snapsGroup);
         }
+    }
+
+    private GameObject InstantiateSnapObject(Snap snap)
+    {
+        var snapObject = Instantiate(snapPointObject) as GameObject;
+        snapObject.transform.position = snap.position;
+        snapObject.transform.up = snap.normal;
+        return snapObject;
     }
 }
