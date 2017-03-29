@@ -90,6 +90,7 @@ public class MousePointer : MonoBehaviour
                     hitObject = rayCastHit.transform.gameObject;
                     rayCastHit.transform.parent = transform;
                     snaps = GetSnaps();
+                    snaps.AddRange(GetUserSnaps());
                     hitPointZ = mainCamera.WorldToScreenPoint(hitPoint).z;
                     //Debug.Log(hitPointZ);
                     dragging = true;
@@ -145,6 +146,14 @@ public class MousePointer : MonoBehaviour
         snapsGroup = new GameObject();
         foreach (var snap in snaps)
         {
+
+    // Gathers all valid user-created snaps from object in the scene.
+    private List<Snap> GetUserSnaps()
+    {
+        var userSnaps = new List<Snap>();
+        return userSnaps;
+    }
+
             var snapObject = GameObject.Instantiate(snapPointObject) as GameObject;
             snapObject.transform.position = snap.position;
             snapObject.transform.up = snap.normal;
