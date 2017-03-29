@@ -99,6 +99,10 @@ public class MousePointer : MonoBehaviour
                 {
                     material.color = new Color(1,0,0,.3f);
                 }
+                if (Input.GetMouseButtonUp(1))
+                {
+                    flipNormal = !flipNormal;
+                }
             }
             else
             {

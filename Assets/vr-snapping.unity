@@ -1319,7 +1319,7 @@ Transform:
   m_GameObject: {fileID: 315531147}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalScale: {x: 0.00415858, y: 0.052104857, z: 0.00415858}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -4077,6 +4077,7 @@ MonoBehaviour:
   text: {fileID: 589939895}
   objectsGroup: {fileID: 2087850178}
   snapPointObject: {fileID: 315531147}
+  snapDistance: 5
 --- !u!1 &1149270019
 GameObject:
   m_ObjectHideFlags: 0

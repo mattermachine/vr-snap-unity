@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vr-snap-unity", "Assembly-C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vr-snap-unity", "Assembly-CSharp-Editor-firstpass.csproj", "{68D7FA84-D8E3-783A-DF92-6BB01ACFE170}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vr-snap-unity", "Assembly-CSharp-Editor.csproj", "{8F02F237-4B6A-DFB1-A102-75C97F38F6B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{68D7FA84-D8E3-783A-DF92-6BB01ACFE170}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68D7FA84-D8E3-783A-DF92-6BB01ACFE170}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68D7FA84-D8E3-783A-DF92-6BB01ACFE170}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F02F237-4B6A-DFB1-A102-75C97F38F6B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F02F237-4B6A-DFB1-A102-75C97F38F6B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F02F237-4B6A-DFB1-A102-75C97F38F6B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F02F237-4B6A-DFB1-A102-75C97F38F6B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
