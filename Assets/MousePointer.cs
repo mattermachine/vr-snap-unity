@@ -107,6 +107,7 @@ public class MousePointer : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             dragging = false;
+            flipNormal = false;
             hitObject.transform.parent = objectsGroup.transform;
             DestroySnapsGroup();
         }
