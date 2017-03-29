@@ -17,6 +17,8 @@ public class MousePointer : MonoBehaviour
     private float hitPointZ;
     private GameObject hitObject;
     private List<Snap> snaps;
+    Vector3 hitPoint;
+    Vector3 hitNormal;
 
     struct Snap
     {
@@ -43,6 +45,7 @@ public class MousePointer : MonoBehaviour
         if (dragging)
         {
             var adjustedMousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, hitPointZ);
+            transform.up = hitNormal;
             foreach (var snap in snaps)
             {
                 var screenPosition = camera.WorldToScreenPoint(snap.position);
@@ -62,8 +65,8 @@ public class MousePointer : MonoBehaviour
             RaycastHit rayCastHit;
             if (Physics.Raycast(ray, out rayCastHit, 1000))
             {
-                var hitPoint = rayCastHit.point;
-                var hitNormal = rayCastHit.normal;
+                hitPoint = rayCastHit.point;
+                hitNormal = rayCastHit.normal;
                 transform.position = hitPoint;
                 transform.up = hitNormal;
                 if (Input.GetMouseButtonDown(0))
