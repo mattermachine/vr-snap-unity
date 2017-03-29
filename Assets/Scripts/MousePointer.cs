@@ -101,11 +101,11 @@ public class MousePointer : MonoBehaviour
                     hitPointZ = mainCamera.WorldToScreenPoint(hitPoint).z;
                     //Debug.Log(hitPointZ);
                     dragging = true;
-                    material.color = new Color(0, 1, 0, .3f);
+                    material.color = new Color(0.11f, 0.88f, 0.09f, 0.62f);
                 }
                 else
                 {
-                    material.color = new Color(1,0,0,.3f);
+                    material.color = new Color(0.63f, 0.89f, 0.56f, 0.58f);
                 }
                 if (Input.GetMouseButtonUp(1))
                 {
