@@ -117,9 +117,9 @@ public class MousePointer : MonoBehaviour
                     material.color = new Color(0.63f, 0.89f, 0.56f, 0.58f);
                 }
 
+                // Create snap point at pointer.
                 if (Input.GetMouseButtonUp(1))
                 {
-                    // Create snap point at pointer.
                     var snap = new Snap();
                     snap.position = hitPoint;
                     snap.normal = hitNormal;
@@ -139,10 +139,18 @@ public class MousePointer : MonoBehaviour
         text.text = ("x: " + Input.mousePosition.x + " y: " + Input.mousePosition.y);
     }
 
-    // Creates snaps at vertices, on-the-fly.
+    // Generates snaps at vertices, on-the-fly.
     private List<Snap> GetVertexSnaps()
     {
-        MeshFilter[] meshFilters = objectsGroup.GetComponentsInChildren<MeshFilter>();
+        var meshFilters = new List<MeshFilter>();
+        foreach (Transform child in objectsGroup.transform)
+        {
+            var meshFilter = child.GetComponent<MeshFilter>();
+            if (meshFilter != null)
+            {
+                meshFilters.Add(meshFilter);
+            }
+        }
         var vertexSnaps = new List<Snap>();
         foreach (var meshFilter in meshFilters)
         {
