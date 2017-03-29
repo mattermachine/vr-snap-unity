@@ -107,9 +107,15 @@ public class MousePointer : MonoBehaviour
                 {
                     material.color = new Color(0.63f, 0.89f, 0.56f, 0.58f);
                 }
+
                 if (Input.GetMouseButtonUp(1))
                 {
-                    // create snap point at pointer
+                    // Create snap point at pointer.
+                    var snap = new Snap();
+                    snap.position = hitPoint;
+                    snap.normal = hitNormal;
+                    var snapObject = InstantiateSnapObject(snap);
+                    snapObject.transform.parent = rayCastHit.transform;
                 }
             }
             else
