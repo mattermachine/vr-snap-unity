@@ -11,7 +11,7 @@ public class MousePointer : MonoBehaviour
     public GameObject objectsGroup;
     public GameObject snapPointObject;
     private GameObject snapsGroup;
-    private Camera camera;
+    private Camera mainCamera;
     private Material material;
     private bool dragging = false;
     private float hitPointZ;
@@ -35,7 +35,7 @@ public class MousePointer : MonoBehaviour
 
     void Start()
     {
-        camera = transform.parent.GetComponent<Camera>();
+        mainCamera = transform.parent.GetComponent<Camera>();
         material = gameObject.GetComponent<Renderer>().sharedMaterial;
         VRSettings.showDeviceView = true;
         //Screen.SetResolution(VRSettings.eyeTextureWidth, VRSettings.eyeTextureHeight, false);
@@ -44,28 +44,31 @@ public class MousePointer : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(1))
-        {
-            flipNormal = !flipNormal;
-        }
 
         if (dragging)
         {
+            // When dragging, RMB flips the dragged object along the pointer normal.
+            if (Input.GetMouseButtonDown(1))
+            {
+                flipNormal = !flipNormal;
+            }
+
             var adjustedMousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, hitPointZ);
-            //transform.up = flipNormal ? -hitNormal : hitNormal;
             transform.up = hitNormal;
+
+            // Snap to closest snap in screenspace, if any within radius.
             foreach (var snap in snaps)
             {
-                var screenPosition = camera.WorldToScreenPoint(snap.position);
-                if (Mathf.Pow(Input.mousePosition.x - screenPosition.x, 2) + Mathf.Pow(Input.mousePosition.y - screenPosition.y, 2) < snapDistance * snapDistance)  // 10px snapping radius
-                {
-                    adjustedMousePosition = screenPosition;
-                    hitPointZ = screenPosition.z;
-                    transform.up = snap.normal;
-                    break;
-                }
+                var screenPosition = mainCamera.WorldToScreenPoint(snap.position);
+                if (!(Mathf.Pow(Input.mousePosition.x - screenPosition.x, 2) +
+                      Mathf.Pow(Input.mousePosition.y - screenPosition.y, 2) < snapDistance * snapDistance)) continue;
+                adjustedMousePosition = screenPosition;
+                hitPointZ = screenPosition.z;
+                transform.up = snap.normal;
+                break;
             }
-            transform.position = camera.ScreenToWorldPoint(adjustedMousePosition);
+
+            transform.position = mainCamera.ScreenToWorldPoint(adjustedMousePosition);
             if (flipNormal)
             {
                 transform.up = -transform.up;
@@ -73,7 +76,7 @@ public class MousePointer : MonoBehaviour
         }
         else
         {
-            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit rayCastHit;
             if (Physics.Raycast(ray, out rayCastHit, 1000))
             {
@@ -87,7 +90,7 @@ public class MousePointer : MonoBehaviour
                     hitObject = rayCastHit.transform.gameObject;
                     rayCastHit.transform.parent = transform;
                     snaps = GetSnaps();
-                    hitPointZ = camera.WorldToScreenPoint(hitPoint).z;
+                    hitPointZ = mainCamera.WorldToScreenPoint(hitPoint).z;
                     //Debug.Log(hitPointZ);
                     dragging = true;
                     material.color = new Color(0, 1, 0, .3f);
@@ -99,7 +102,7 @@ public class MousePointer : MonoBehaviour
             }
             else
             {
-                transform.position = camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 5));   // FIXME make Z distance more general purpose
+                transform.position = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 5));   // FIXME make Z distance more general purpose
                 transform.forward = Vector3.up;
                 material.color = new Color(0, 0, 0, .3f);
             }
@@ -117,7 +120,7 @@ public class MousePointer : MonoBehaviour
         text.text = ("x: " + Input.mousePosition.x + " y: " + Input.mousePosition.y);
     }
 
-    List<Snap> GetSnaps()
+    private List<Snap> GetSnaps()
     {
         MeshFilter[] meshFilters = objectsGroup.GetComponentsInChildren<MeshFilter>();
         var snaps = new List<Snap>();
@@ -147,7 +150,7 @@ public class MousePointer : MonoBehaviour
         return snaps;
     }
 
-    void DestroySnapsGroup()
+    private void DestroySnapsGroup()
     {
         if (snapsGroup != null)
         {
