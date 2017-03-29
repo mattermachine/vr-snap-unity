@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.VR;
 
-public class MousePointer : MonoBehaviour {
+public class MousePointer : MonoBehaviour
+{
 
     public Text text;
     public GameObject objectsGroup;
@@ -13,16 +14,20 @@ public class MousePointer : MonoBehaviour {
     private Camera camera;
     private Material material;
     private bool dragging = false;
-    //private Vector3 objectToHitpointLocalDelta;
     private float hitPointZ;
-    //private Vector3 mouseStartPosition;
     private GameObject hitObject;
-    private List<Vector3> snappingPoints;
-    
+    private List<Snap> snaps;
+
+    struct Snap
+    {
+        public Vector3 position;
+        public Vector3 normal;
+    }
+
     void Awake()
     {
     }
-    
+
     void Start()
     {
         camera = transform.parent.GetComponent<Camera>();
@@ -31,19 +36,21 @@ public class MousePointer : MonoBehaviour {
         //Screen.SetResolution(VRSettings.eyeTextureWidth, VRSettings.eyeTextureHeight, false);
         //Debug.Log((" width: " + VRSettings.eyeTextureWidth + "  height: " + VRSettings.eyeTextureHeight));
     }
-    
-    void Update() {
+
+    void Update()
+    {
 
         if (dragging)
         {
             var adjustedMousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, hitPointZ);
-            foreach (var vertex in snappingPoints)
+            foreach (var snap in snaps)
             {
-                var screenVertex = camera.WorldToScreenPoint(vertex);
-                if (Mathf.Pow(Input.mousePosition.x-screenVertex.x, 2) + Mathf.Pow(Input.mousePosition.y - screenVertex.y, 2) < 10*10)  // 10px snapping radius
+                var screenPosition = camera.WorldToScreenPoint(snap.position);
+                if (Mathf.Pow(Input.mousePosition.x - screenPosition.x, 2) + Mathf.Pow(Input.mousePosition.y - screenPosition.y, 2) < 10 * 10)  // 10px snapping radius
                 {
-                    adjustedMousePosition = screenVertex;
-                    hitPointZ = screenVertex.z;
+                    adjustedMousePosition = screenPosition;
+                    hitPointZ = screenPosition.z;
+                    transform.up = snap.normal;
                     break;
                 }
             }
@@ -58,15 +65,15 @@ public class MousePointer : MonoBehaviour {
                 var hitPoint = rayCastHit.point;
                 var hitNormal = rayCastHit.normal;
                 transform.position = hitPoint;
+                transform.up = hitNormal;
                 if (Input.GetMouseButtonDown(0))
                 {
+                    // parent object to pointer
                     hitObject = rayCastHit.transform.gameObject;
                     rayCastHit.transform.parent = transform;
-                    //objectToHitpointLocalDelta = transform.InverseTransformVector(rayCastHit.transform.position-hitPoint);
-                    snappingPoints = GetSnappingVertices();
+                    snaps = GetSnaps();
                     hitPointZ = camera.WorldToScreenPoint(hitPoint).z;
                     //Debug.Log(hitPointZ);
-                    //mouseStartPosition = Input.mousePosition;
                     dragging = true;
                     material.color = Color.green;
                 }
@@ -77,11 +84,11 @@ public class MousePointer : MonoBehaviour {
             }
             else
             {
-                transform.position = camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y,10));
+                transform.position = camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 5));   // FIXME make Z distance more general purpose
+                transform.forward = Vector3.up;
                 material.color = Color.black;
             }
         }
-
 
         if (Input.GetMouseButtonUp(0))
         {
@@ -89,21 +96,25 @@ public class MousePointer : MonoBehaviour {
             hitObject.transform.parent = objectsGroup.transform;
         }
 
-
         //text.text = (" width: " + VRSettings.eyeTextureWidth + "  height: " + VRSettings.eyeTextureHeight);
         text.text = ("x: " + Input.mousePosition.x + " y: " + Input.mousePosition.y);
     }
 
-    List<Vector3> GetSnappingVertices()
+    List<Snap> GetSnaps()
     {
         MeshFilter[] meshFilters = objectsGroup.GetComponentsInChildren<MeshFilter>();
-        var vertices = new List<Vector3>();
+        var snaps = new List<Snap>();
         foreach (var meshFilter in meshFilters)
         {
             var tmpTransform = meshFilter.transform;
-            foreach (var vertex in meshFilter.mesh.vertices)
+            var vertices = meshFilter.mesh.vertices;
+            var normals = meshFilter.mesh.normals;
+            for (int i = 0; i < vertices.Length; i++)
             {
-                vertices.Add(tmpTransform.TransformPoint(vertex));
+                var snap = new Snap();
+                snap.position = tmpTransform.TransformPoint(vertices[i]);
+                snap.normal = tmpTransform.TransformVector(normals[i]);
+                snaps.Add(snap);
             }
         }
 
@@ -112,13 +123,14 @@ public class MousePointer : MonoBehaviour {
             GameObject.DestroyImmediate(snapsGroup);
         }
         snapsGroup = new GameObject();
-        foreach (var snap in vertices)
+        foreach (var snap in snaps)
         {
             var snapObject = GameObject.Instantiate(snapPointObject) as GameObject;
-            snapObject.transform.position = snap;
+            snapObject.transform.position = snap.position;
+            snapObject.transform.up = snap.normal;
             snapObject.transform.parent = snapsGroup.transform;
         }
 
-        return vertices;
+        return snaps;
     }
 }
