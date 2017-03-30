@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.VR;
 
-public class MousePointer : MonoBehaviour
+public class SnapEngine : MonoBehaviour
 {
 
     public Text text;
