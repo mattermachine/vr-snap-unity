@@ -544,7 +544,7 @@ GameObject:
   - component: {fileID: 163636673}
   - component: {fileID: 163636672}
   m_Layer: 0
-  m_Name: OverlayCam
+  m_Name: overlay cam
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -787,6 +787,53 @@ Transform:
   m_Father: {fileID: 2087850179}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &194554450
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 194554452}
+  - component: {fileID: 194554451}
+  m_Layer: 0
+  m_Name: main
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &194554451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 194554450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dde94387aa9fc9844990be9a1ca390d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 589939895}
+  objectsGroup: {fileID: 2087850178}
+  snapObject: {fileID: 315531147}
+  pointerObject: {fileID: 1112326630}
+  doVertexSnaps: 0
+  dontRayWhenDragging: 1
+  snapDistance: 5
+--- !u!4 &194554452
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 194554450}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.12444067, y: 0.9637071, z: 5.929766}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &198066202
 GameObject:
   m_ObjectHideFlags: 0
@@ -825,7 +872,7 @@ GameObject:
   - component: {fileID: 199778756}
   - component: {fileID: 199778755}
   m_Layer: 0
-  m_Name: Light
+  m_Name: light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1256,7 +1303,7 @@ GameObject:
   - component: {fileID: 315531148}
   - component: {fileID: 315531152}
   m_Layer: 8
-  m_Name: SnapPointObject
+  m_Name: snap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1775,7 +1822,7 @@ GameObject:
   - component: {fileID: 440486800}
   - component: {fileID: 440486805}
   m_Layer: 0
-  m_Name: MainCam
+  m_Name: main cam
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2206,7 +2253,7 @@ GameObject:
   - component: {fileID: 589939896}
   - component: {fileID: 589939895}
   m_Layer: 0
-  m_Name: Text
+  m_Name: screen position text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3359,7 +3406,7 @@ GameObject:
   - component: {fileID: 896963903}
   - component: {fileID: 896963902}
   m_Layer: 0
-  m_Name: EventSystem
+  m_Name: event system
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4006,7 +4053,7 @@ GameObject:
   - component: {fileID: 1112326631}
   - component: {fileID: 1112326635}
   m_Layer: 8
-  m_Name: Pointer
+  m_Name: pointer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4071,14 +4118,15 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1112326630}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dde94387aa9fc9844990be9a1ca390d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 589939895}
   objectsGroup: {fileID: 2087850178}
-  snapPointObject: {fileID: 315531147}
+  snapObject: {fileID: 315531147}
+  pointerObject: {fileID: 1112326630}
   doVertexSnaps: 0
   dontRayWhenDragging: 1
   snapDistance: 5
@@ -5878,7 +5926,7 @@ GameObject:
   - component: {fileID: 1800870245}
   - component: {fileID: 1800870244}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6808,7 +6856,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2087850179}
   m_Layer: 0
-  m_Name: Objects
+  m_Name: objects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

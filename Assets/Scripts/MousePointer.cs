@@ -9,10 +9,12 @@ public class MousePointer : MonoBehaviour
 
     public Text text;
     public GameObject objectsGroup;
-    public GameObject snapPointObject;
+    public GameObject snapObject;
+    public GameObject pointerObject;
+    private Transform pointerTransform;
     private GameObject snapsGroup;
     private Camera mainCamera;
-    private Material material;
+    private Material pointerMaterial;
     private bool dragging = false;
     private float pointerZ;
     private float defaultPointerZ = 5;
@@ -39,9 +41,10 @@ public class MousePointer : MonoBehaviour
 
     void Start()
     {
-        mainCamera = transform.parent.GetComponent<Camera>();
-        material = gameObject.GetComponent<Renderer>().sharedMaterial;
+        mainCamera = pointerObject.transform.parent.GetComponent<Camera>();
+        pointerMaterial = pointerObject.GetComponent<Renderer>().sharedMaterial;
         VRSettings.showDeviceView = true;
+        pointerTransform = pointerObject.transform;
         snaps = GetUserSnaps();
         pointerZ = defaultPointerZ;
         //Screen.SetResolution(VRSettings.eyeTextureWidth, VRSettings.eyeTextureHeight, false);
@@ -63,8 +66,8 @@ public class MousePointer : MonoBehaviour
                 hitNormal = rayCastHit.normal;
                 hitTransform = rayCastHit.transform;
                 pointerZ = mainCamera.WorldToScreenPoint(hitPoint).z;
-                transform.position = hitPoint;
-                transform.up = flipNormal ? -hitNormal : hitNormal;
+                pointerTransform.position = hitPoint;
+                pointerTransform.up = flipNormal ? -hitNormal : hitNormal;
             }
         }
 
@@ -77,11 +80,11 @@ public class MousePointer : MonoBehaviour
                   Mathf.Pow(Input.mousePosition.y - screenPosition.y, 2) < snapDistance * snapDistance)) continue;
             adjustedMousePosition = screenPosition;
             pointerZ = screenPosition.z;
-            transform.up = dragging ? snap.normal : -snap.normal;   // simulate male-female
-            transform.up = flipNormal ? -transform.up : transform.up;
+            pointerTransform.up = dragging ? snap.normal : -snap.normal;   // simulate male-female
+            pointerTransform.up = flipNormal ? -pointerTransform.up : pointerTransform.up;
             break;
         }
-        transform.position = mainCamera.ScreenToWorldPoint(adjustedMousePosition);
+        pointerTransform.position = mainCamera.ScreenToWorldPoint(adjustedMousePosition);
 
 
         if (dragging)
@@ -112,7 +115,7 @@ public class MousePointer : MonoBehaviour
                     dragging = true;
                     draggedObject = hitTransform.gameObject;
                     draggedObject.GetComponent<Collider>().enabled = false;  // disable collider -> disables raycasting against this object
-                    hitTransform.parent = transform; // parent object to pointer
+                    hitTransform.parent = pointerTransform; // parent object to pointer
 
                     snaps = new List<Snap>();
                     if (doVertexSnaps)
@@ -121,11 +124,11 @@ public class MousePointer : MonoBehaviour
                     }
                     snaps.AddRange(GetUserSnaps());
 
-                    material.color = new Color(0.11f, 0.88f, 0.09f, 0.62f);
+                    pointerMaterial.color = new Color(0.11f, 0.88f, 0.09f, 0.62f);
                 }
                 else
                 {
-                    material.color = new Color(0.63f, 0.89f, 0.56f, 0.58f);
+                    pointerMaterial.color = new Color(0.63f, 0.89f, 0.56f, 0.58f);
                 }
 
                 // Create snap point at pointer.
@@ -142,9 +145,9 @@ public class MousePointer : MonoBehaviour
             else  // no ray hit, not dragging
             {
                 pointerZ = defaultPointerZ;
-                transform.position = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, pointerZ));
-                transform.forward = Vector3.up;
-                material.color = new Color(0, 0, 0, .3f);
+                pointerTransform.position = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, pointerZ));
+                pointerTransform.forward = Vector3.up;
+                pointerMaterial.color = new Color(0, 0, 0, .3f);
             }
         }
 
@@ -215,7 +218,7 @@ public class MousePointer : MonoBehaviour
 
     private GameObject InstantiateSnapObject(Snap snap)
     {
-        var snapObject = Instantiate(snapPointObject) as GameObject;
+        var snapObject = Instantiate(this.snapObject) as GameObject;
         snapObject.transform.position = snap.position;
         snapObject.transform.up = snap.normal;
         return snapObject;
