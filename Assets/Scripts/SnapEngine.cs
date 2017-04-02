@@ -7,11 +7,10 @@ using UnityEngine.VR;
 
 public class SnapEngine : MonoBehaviour
 {
-
     public Text text;
     public GameObject objectsGroup;
-    public GameObject snapObject;
-    public GameObject pointerObject;
+    public GameObject snapGameobjects;
+    public GameObject pointerGameobject;
     private Transform pointerTransform;
     private GameObject snapsGroup;
     private Camera mainCamera;
@@ -42,10 +41,10 @@ public class SnapEngine : MonoBehaviour
 
     void Start()
     {
-        mainCamera = pointerObject.transform.parent.GetComponent<Camera>();
-        pointerMaterial = pointerObject.GetComponent<Renderer>().sharedMaterial;
+        mainCamera = pointerGameobject.transform.parent.GetComponent<Camera>();
+        pointerMaterial = pointerGameobject.GetComponent<Renderer>().sharedMaterial;
         VRSettings.showDeviceView = true;
-        pointerTransform = pointerObject.transform;
+        pointerTransform = pointerGameobject.transform;
         snaps = GetUserSnaps();
         pointerZ = defaultPointerZ;
         //Screen.SetResolution(VRSettings.eyeTextureWidth, VRSettings.eyeTextureHeight, false);
@@ -260,7 +259,7 @@ public class SnapEngine : MonoBehaviour
 
     private GameObject InstantiateSnapObject(Snap snap)
     {
-        var snapObject = Instantiate(this.snapObject) as GameObject;
+        var snapObject = Instantiate(this.snapGameobjects) as GameObject;
         snapObject.transform.position = snap.position;
         snapObject.transform.up = snap.normal;
         return snapObject;
