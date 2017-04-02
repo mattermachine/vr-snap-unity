@@ -9,7 +9,7 @@ public class SnapEngine : MonoBehaviour
 {
     public Text text;
     public GameObject objectsGroup;
-    public GameObject snapGameobjects;
+    public GameObject snapGameobject;
     public GameObject pointerGameobject;
     private Transform pointerTransform;
     private GameObject snapsGroup;
@@ -259,7 +259,7 @@ public class SnapEngine : MonoBehaviour
 
     private GameObject InstantiateSnapObject(Snap snap)
     {
-        var snapObject = Instantiate(this.snapGameobjects) as GameObject;
+        var snapObject = Instantiate(this.snapGameobject) as GameObject;
         snapObject.transform.position = snap.position;
         snapObject.transform.up = snap.normal;
         return snapObject;
