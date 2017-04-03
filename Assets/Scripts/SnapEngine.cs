@@ -12,6 +12,7 @@ public class SnapEngine : MonoBehaviour
     public GameObject libraryGroup;
     public GameObject snapGameobject;
     public GameObject pointerGameobject;
+    public GameObject planeGameobject;
     private Transform pointerTransform;
     private GameObject snapsGroup;
     private Camera mainCamera;
@@ -95,6 +96,12 @@ public class SnapEngine : MonoBehaviour
 
         var pointerIsSnapped = SnapPointer();
 
+        // FIXME: collect all orientation logic here (from ray-ing and snapping).
+        if (rayDidHit && dragging && hitTransform.gameObject == planeGameobject)
+        {
+            pointerTransform.up = Vector3.down;
+        }
+
         if (dragging)
         {
             pointerMaterial.color = pointerIsSnapped ? snappedPointerColor : draggingPointerColor;
@@ -130,7 +137,7 @@ public class SnapEngine : MonoBehaviour
         {
             if (rayDidHit)
             {
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0)  && hitTransform.gameObject != planeGameobject)  // don't drag plane object
                 {
                     dragging = true;
                     draggedObjects = new List<GameObject>();
@@ -188,11 +195,11 @@ public class SnapEngine : MonoBehaviour
         foreach (var snap in snaps)
         {
             var screenPosition = mainCamera.WorldToScreenPoint(snap.position);
-            if (!(Mathf.Pow(Input.mousePosition.x - screenPosition.x, 2) +
-                  Mathf.Pow(Input.mousePosition.y - screenPosition.y, 2) < snapDistance * snapDistance)) continue;
+            if (Mathf.Pow(Input.mousePosition.x - screenPosition.x, 2) +
+                  Mathf.Pow(Input.mousePosition.y - screenPosition.y, 2) > snapDistance * snapDistance) continue;
             adjustedMousePosition = screenPosition;
             pointerZ = screenPosition.z;
-            pointerTransform.up = dragging ? snap.normal : -snap.normal;   // simulate male-female
+//            pointerTransform.up = dragging ? snap.normal : -snap.normal;   // simulate male-female
             pointerTransform.up = flipNormal ? -pointerTransform.up : pointerTransform.up;
             snapped = true;
             break;
@@ -278,6 +285,7 @@ public class SnapEngine : MonoBehaviour
         var userSnaps = new List<Snap>();
         List<SnapObject> snapObjects = objectsGroup.GetComponentsInChildren<SnapObject>().ToList();
         snapObjects.AddRange(libraryGroup.GetComponentsInChildren<SnapObject>().ToList());
+        snapObjects.AddRange(planeGameobject.GetComponentsInChildren<SnapObject>().ToList());
         foreach (var snapObject in snapObjects)
         {
             var snap = new Snap();

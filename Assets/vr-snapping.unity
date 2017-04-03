@@ -939,13 +939,15 @@ MonoBehaviour:
   libraryGroup: {fileID: 2132396908}
   snapGameobject: {fileID: 315531147}
   pointerGameobject: {fileID: 1112326630}
+  planeGameobject: {fileID: 1203981438}
   doVertexSnaps: 0
-  dontRayWhenDragging: 1
+  dontRayWhenDragging: 0
   defaultPointerColor: {r: 0, g: 0, b: 0, a: 0.3}
   hoverPointerColor: {r: 0.63, g: 0.89, b: 0.56, a: 0.58}
   draggingPointerColor: {r: 0.11, g: 0.88, b: 0.09, a: 0.62}
   snappedPointerColor: {r: 0.93, g: 0.22, b: 0, a: 0.8}
   pointerIsSnapped: 0
+  librarySwitchAngle: 20
   snapDistance: 15
 --- !u!4 &194554452
 Transform:
@@ -958,7 +960,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &198066202
 GameObject:
@@ -1051,7 +1053,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &209948048
 GameObject:
@@ -1286,13 +1288,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 241681979}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.62, y: 2.27, z: 4.23}
+  m_LocalRotation: {x: -0.24478915, y: 0.21048047, z: 0.21074694, w: 0.9226928}
+  m_LocalPosition: {x: 5.04, y: 2.52, z: 5.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2087850179}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -32.714, y: 19.817001, z: 19.862001}
 --- !u!1 &243557388
 GameObject:
   m_ObjectHideFlags: 0
@@ -1574,7 +1576,7 @@ Transform:
   - {fileID: 1844996182}
   - {fileID: 1920575410}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &315531152
 MonoBehaviour:
@@ -1663,7 +1665,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 318485373}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.12, y: 0.99, z: 1.54}
+  m_LocalPosition: {x: 0.131, y: 0.99, z: 1.54}
   m_LocalScale: {x: 0.049730435, y: 0.04973044, z: 0.04973044}
   m_Children: []
   m_Father: {fileID: 2132396909}
@@ -2138,7 +2140,7 @@ Skybox:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 440486799}
   m_Enabled: 1
-  m_CustomSkybox: {fileID: 2100000, guid: e222162ddb8d34547a133b673221b195, type: 2}
+  m_CustomSkybox: {fileID: 2100000, guid: fb3b9b55c01d2194c816b2d469854e16, type: 2}
 --- !u!1 &451456640
 GameObject:
   m_ObjectHideFlags: 0
@@ -2483,7 +2485,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &589939894
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2508,7 +2510,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 589939893}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -2854,7 +2856,7 @@ Transform:
   - {fileID: 440486804}
   - {fileID: 163636671}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &710337488
 GameObject:
@@ -3800,7 +3802,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &901052683
 GameObject:
@@ -4477,6 +4479,7 @@ MonoBehaviour:
   libraryGroup: {fileID: 0}
   snapGameobject: {fileID: 0}
   pointerGameobject: {fileID: 0}
+  planeGameobject: {fileID: 0}
   doVertexSnaps: 0
   dontRayWhenDragging: 1
   defaultPointerColor: {r: 0, g: 0, b: 0, a: 0.3}
@@ -4484,6 +4487,7 @@ MonoBehaviour:
   draggingPointerColor: {r: 0.11, g: 0.88, b: 0.09, a: 0.62}
   snappedPointerColor: {r: 0.93, g: 0.22, b: 0, a: 0.8}
   pointerIsSnapped: 0
+  librarySwitchAngle: 50
   snapDistance: 5
 --- !u!1 &1143436453
 GameObject:
@@ -4724,7 +4728,7 @@ GameObject:
   - component: {fileID: 1203981440}
   - component: {fileID: 1203981439}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4743,7 +4747,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 1f181471471f2c345913427249cf79bf, type: 2}
+  - {fileID: 2100000, guid: b4ac44eacc0bfde44a5d4fb15015c6eb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4790,10 +4794,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1203981438}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 9.19}
-  m_LocalScale: {x: 1.9181452, y: 1.9181452, z: 1.9181452}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 4.7576704, y: 4.7576685, z: 4.7576685}
   m_Children: []
-  m_Father: {fileID: 2087850179}
+  m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1225010979
@@ -6438,7 +6442,7 @@ RectTransform:
   - {fileID: 589939894}
   - {fileID: 1143436454}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6752,7 +6756,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1882018003}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.8000002, y: -1.4497733, z: 2.106}
+  m_LocalPosition: {x: -3.2, y: 1.89, z: 0.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2087850179}
@@ -7404,9 +7408,8 @@ Transform:
   - {fileID: 1572428198}
   - {fileID: 241681983}
   - {fileID: 1882018004}
-  - {fileID: 1203981442}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2112991468
 GameObject:
