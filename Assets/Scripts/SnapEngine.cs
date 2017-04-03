@@ -27,6 +27,11 @@ public class SnapEngine : MonoBehaviour
     private bool flipNormal = false;
     public bool doVertexSnaps;
     public bool dontRayWhenDragging;
+    public Color defaultPointerColor = new Color(0, 0, 0, .3f);
+    public Color hoverPointerColor = new Color(0.89f, 0.82f, 0.02f, 0.58f);
+    public Color draggingPointerColor = new Color(0.88f, 0.38f, 0f, 0.62f);
+    public Color snappedPointerColor = new Color(0.93f, 0.22f, 0f, 0.8f);
+    public bool pointerIsSnapped = false;
 
     public float snapDistance = 5;  // snap radius in pixels
 
@@ -84,24 +89,12 @@ public class SnapEngine : MonoBehaviour
             }
         }
 
-        // Snap to closest snap in screenspace, if any within radius.
-        var adjustedMousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, pointerZ);
-        foreach (var snap in snaps)
-        {
-            var screenPosition = mainCamera.WorldToScreenPoint(snap.position);
-            if (!(Mathf.Pow(Input.mousePosition.x - screenPosition.x, 2) +
-                  Mathf.Pow(Input.mousePosition.y - screenPosition.y, 2) < snapDistance * snapDistance)) continue;
-            adjustedMousePosition = screenPosition;
-            pointerZ = screenPosition.z;
-            pointerTransform.up = dragging ? snap.normal : -snap.normal;   // simulate male-female
-            pointerTransform.up = flipNormal ? -pointerTransform.up : pointerTransform.up;
-            break;
-        }
-        pointerTransform.position = mainCamera.ScreenToWorldPoint(adjustedMousePosition);
-
+        var pointerIsSnapped = SnapPointer();
 
         if (dragging)
         {
+            pointerMaterial.color = pointerIsSnapped ? snappedPointerColor : draggingPointerColor;
+
             // When dragging, RMB flips the dragged object along the pointer normal.
             if (Input.GetMouseButtonDown(1))
             {
@@ -144,11 +137,11 @@ public class SnapEngine : MonoBehaviour
                     }
                     snaps.AddRange(GetUserSnaps());
 
-                    pointerMaterial.color = new Color(0.11f, 0.88f, 0.09f, 0.62f);
+                    pointerMaterial.color = draggingPointerColor;
                 }
                 else
                 {
-                    pointerMaterial.color = new Color(0.63f, 0.89f, 0.56f, 0.58f);
+                    pointerMaterial.color = pointerIsSnapped ? snappedPointerColor : hoverPointerColor;
                 }
 
                 // Create snap point at pointer.
@@ -167,7 +160,7 @@ public class SnapEngine : MonoBehaviour
                 pointerZ = defaultPointerZ;
                 pointerTransform.position = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, pointerZ));
                 pointerTransform.forward = Vector3.up;
-                pointerMaterial.color = new Color(0, 0, 0, .3f);
+                pointerMaterial.color = defaultPointerColor;
             }
         }
 
@@ -175,6 +168,28 @@ public class SnapEngine : MonoBehaviour
         text.text = ("x: " + Input.mousePosition.x + " y: " + Input.mousePosition.y);
     }
 
+    private bool SnapPointer()
+    {
+        bool snapped = false;
+
+        // Snap to closest snap in screenspace, if any within radius.
+        var adjustedMousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, pointerZ);
+        foreach (var snap in snaps)
+        {
+            var screenPosition = mainCamera.WorldToScreenPoint(snap.position);
+            if (!(Mathf.Pow(Input.mousePosition.x - screenPosition.x, 2) +
+                  Mathf.Pow(Input.mousePosition.y - screenPosition.y, 2) < snapDistance * snapDistance)) continue;
+            adjustedMousePosition = screenPosition;
+            pointerZ = screenPosition.z;
+            pointerTransform.up = dragging ? snap.normal : -snap.normal;   // simulate male-female
+            pointerTransform.up = flipNormal ? -pointerTransform.up : pointerTransform.up;
+            snapped = true;
+            break;
+        }
+        pointerTransform.position = mainCamera.ScreenToWorldPoint(adjustedMousePosition);
+
+        return snapped;
+    }
     // Generates snaps at vertices, on-the-fly.
     private List<Snap> GetVertexSnaps()
     {
