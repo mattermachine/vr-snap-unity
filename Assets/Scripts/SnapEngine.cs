@@ -9,15 +9,15 @@ public class SnapEngine : MonoBehaviour
 {
     public Text text;
     public GameObject objectsGroup;
-    public GameObject libraryGroup;
+    public ObjectLibrary objectLibrary;
     public GameObject snapGameobject;
     public GameObject pointerGameobject;
     public GameObject planeGameobject;
     private Transform pointerTransform;
     private GameObject snapsGroup;
-    private Camera mainCamera;
+    public static Camera mainCamera;
     private Material pointerMaterial;
-    private bool dragging = false;
+    public static bool dragging = false;
     private float pointerZ;
     private float defaultPointerZ = 5;
     private List<GameObject> draggedObjects;
@@ -33,7 +33,7 @@ public class SnapEngine : MonoBehaviour
     public Color draggingPointerColor = new Color(0.88f, 0.38f, 0f, 0.62f);
     public Color snappedPointerColor = new Color(0.93f, 0.22f, 0f, 0.8f);
     public bool pointerIsSnapped = false;
-    public float librarySwitchAngle = 50;
+    public static bool rayCastSuccess = false;
 
     public float snapDistance = 5;  // snap radius in pixels
 
@@ -41,10 +41,6 @@ public class SnapEngine : MonoBehaviour
     {
         public Vector3 position;
         public Vector3 normal;
-    }
-
-    void Awake()
-    {
     }
 
     void Start()
@@ -72,18 +68,15 @@ public class SnapEngine : MonoBehaviour
             mainCamera.transform.parent.position = new Vector3(0,2,0);  // Snap back to overview.
         }
 
-        // Show library when looking up.
-//        Debug.Log(mainCamera.transform.eulerAngles.x);
-        libraryGroup.SetActive((mainCamera.transform.eulerAngles.x - 360) < -librarySwitchAngle && mainCamera.transform.eulerAngles.x > 180);
 
-        bool rayDidHit = false;
+        rayCastSuccess = false;
         if (!(dragging && dontRayWhenDragging))
         {
             // Ray against objects in the scene.
             RaycastHit rayCastHit;
             Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-            rayDidHit = Physics.Raycast(ray, out rayCastHit, 1000);
-            if (rayDidHit)
+            rayCastSuccess = Physics.Raycast(ray, out rayCastHit, 1000);
+            if (rayCastSuccess)
             {
                 hitPoint = rayCastHit.point;
                 hitNormal = rayCastHit.normal;
@@ -97,7 +90,7 @@ public class SnapEngine : MonoBehaviour
         var pointerIsSnapped = SnapPointer();
 
         // FIXME: collect all orientation logic here (from ray-ing and snapping).
-        if (rayDidHit && dragging && hitTransform.gameObject == planeGameobject)
+        if (rayCastSuccess && dragging && hitTransform.gameObject == planeGameobject)
         {
             pointerTransform.up = Vector3.down;
         }
@@ -119,9 +112,9 @@ public class SnapEngine : MonoBehaviour
                 flipNormal = false;
                 foreach (var draggedObject in draggedObjects)
                 {
-                    if (libraryGroup.activeSelf)
+                    if (objectLibrary.Visible)
                     {
-                        draggedObject.transform.parent = libraryGroup.transform;
+                        draggedObject.transform.parent = objectLibrary.transform;
                     }
                     else
                     {
@@ -131,11 +124,13 @@ public class SnapEngine : MonoBehaviour
                 }
                 DestroyVertexSnapsGroup();
                 snaps = GetUserSnaps();
+
+                objectLibrary.Hide();
             }
         }
         else  // not dragging
         {
-            if (rayDidHit)
+            if (rayCastSuccess)
             {
                 if (Input.GetMouseButtonDown(0)  && hitTransform.gameObject != planeGameobject)  // don't drag plane object
                 {
@@ -154,6 +149,8 @@ public class SnapEngine : MonoBehaviour
                         snaps.AddRange(GetVertexSnaps());
                     }
                     snaps.AddRange(GetUserSnaps());
+
+                    objectLibrary.Hide();  // Hide library after object is being dragged out of it.
 
                     pointerMaterial.color = draggingPointerColor;
                 }
@@ -284,7 +281,7 @@ public class SnapEngine : MonoBehaviour
     {
         var userSnaps = new List<Snap>();
         List<SnapObject> snapObjects = objectsGroup.GetComponentsInChildren<SnapObject>().ToList();
-        snapObjects.AddRange(libraryGroup.GetComponentsInChildren<SnapObject>().ToList());
+        snapObjects.AddRange(objectLibrary.GetComponentsInChildren<SnapObject>().ToList());
         snapObjects.AddRange(planeGameobject.GetComponentsInChildren<SnapObject>().ToList());
         foreach (var snapObject in snapObjects)
         {

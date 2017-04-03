@@ -936,7 +936,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 589939895}
   objectsGroup: {fileID: 2087850178}
-  libraryGroup: {fileID: 2132396908}
+  objectLibrary: {fileID: 2132396910}
   snapGameobject: {fileID: 315531147}
   pointerGameobject: {fileID: 1112326630}
   planeGameobject: {fileID: 1203981438}
@@ -947,7 +947,6 @@ MonoBehaviour:
   draggingPointerColor: {r: 0.11, g: 0.88, b: 0.09, a: 0.62}
   snappedPointerColor: {r: 0.93, g: 0.22, b: 0, a: 0.8}
   pointerIsSnapped: 0
-  librarySwitchAngle: 20
   snapDistance: 15
 --- !u!4 &194554452
 Transform:
@@ -4476,7 +4475,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 589939895}
   objectsGroup: {fileID: 2087850178}
-  libraryGroup: {fileID: 0}
+  objectLibrary: {fileID: 0}
   snapGameobject: {fileID: 0}
   pointerGameobject: {fileID: 0}
   planeGameobject: {fileID: 0}
@@ -4487,7 +4486,6 @@ MonoBehaviour:
   draggingPointerColor: {r: 0.11, g: 0.88, b: 0.09, a: 0.62}
   snappedPointerColor: {r: 0.93, g: 0.22, b: 0, a: 0.8}
   pointerIsSnapped: 0
-  librarySwitchAngle: 50
   snapDistance: 5
 --- !u!1 &1143436453
 GameObject:
@@ -7664,6 +7662,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2132396909}
+  - component: {fileID: 2132396910}
   m_Layer: 0
   m_Name: library objects
   m_TagString: Untagged
@@ -7691,6 +7690,17 @@ Transform:
   m_Father: {fileID: 440486804}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2132396910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2132396908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c88f3c9965dca0f4ea6937261a4957cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2138950016
 GameObject:
   m_ObjectHideFlags: 0
