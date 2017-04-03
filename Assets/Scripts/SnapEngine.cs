@@ -54,6 +54,18 @@ public class SnapEngine : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f ) // forward
+        {
+            Debug.Log("scroll up");
+            mainCamera.transform.parent.Translate(mainCamera.transform.forward);
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0f ) // backwards
+        {
+            Debug.Log("scroll down");
+            mainCamera.transform.parent.position = new Vector3(0,2,0);
+        }
+
+
         bool rayDidHit = false;
         if (!(dragging && dontRayWhenDragging))
         {
