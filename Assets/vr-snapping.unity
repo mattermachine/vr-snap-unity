@@ -745,10 +745,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 163636670}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 707309527}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!81 &163636672
@@ -936,10 +936,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 589939895}
   objectsGroup: {fileID: 2087850178}
+  libraryGroup: {fileID: 2132396908}
   snapGameobject: {fileID: 315531147}
   pointerGameobject: {fileID: 1112326630}
   doVertexSnaps: 0
   dontRayWhenDragging: 1
+  defaultPointerColor: {r: 0, g: 0, b: 0, a: 0.3}
+  hoverPointerColor: {r: 0.63, g: 0.89, b: 0.56, a: 0.58}
+  draggingPointerColor: {r: 0.11, g: 0.88, b: 0.09, a: 0.62}
+  snappedPointerColor: {r: 0.93, g: 0.22, b: 0, a: 0.8}
+  pointerIsSnapped: 0
   snapDistance: 15
 --- !u!4 &194554452
 Transform:
@@ -952,7 +958,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &198066202
 GameObject:
@@ -1045,7 +1051,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &209948048
 GameObject:
@@ -1281,11 +1287,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 241681979}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.62, y: -0.84000015, z: 4.23}
+  m_LocalPosition: {x: -2.62, y: 2.27, z: 4.23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2087850179}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &243557388
 GameObject:
@@ -1568,7 +1574,7 @@ Transform:
   - {fileID: 1844996182}
   - {fileID: 1920575410}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &315531152
 MonoBehaviour:
@@ -1657,11 +1663,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 318485373}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.22, y: 1.01, z: 1.49}
+  m_LocalPosition: {x: 0.12, y: 0.99, z: 1.54}
   m_LocalScale: {x: 0.049730435, y: 0.04973044, z: 0.04973044}
   m_Children: []
-  m_Father: {fileID: 2087850179}
-  m_RootOrder: 1
+  m_Father: {fileID: 2132396909}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &319401929
 GameObject:
@@ -2104,13 +2110,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 440486799}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1112326634}
   - {fileID: 2132396909}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 707309527}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &440486805
@@ -2502,7 +2508,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 589939893}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -2818,6 +2824,36 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 654586138}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &707309526
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 707309527}
+  m_Layer: 0
+  m_Name: cam offset
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &707309527
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 707309526}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 440486804}
+  - {fileID: 163636671}
+  m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &710337488
@@ -3764,7 +3800,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &901052683
 GameObject:
@@ -4438,10 +4474,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 589939895}
   objectsGroup: {fileID: 2087850178}
+  libraryGroup: {fileID: 0}
   snapGameobject: {fileID: 0}
   pointerGameobject: {fileID: 0}
   doVertexSnaps: 0
   dontRayWhenDragging: 1
+  defaultPointerColor: {r: 0, g: 0, b: 0, a: 0.3}
+  hoverPointerColor: {r: 0.63, g: 0.89, b: 0.56, a: 0.58}
+  draggingPointerColor: {r: 0.11, g: 0.88, b: 0.09, a: 0.62}
+  snappedPointerColor: {r: 0.93, g: 0.22, b: 0, a: 0.8}
+  pointerIsSnapped: 0
   snapDistance: 5
 --- !u!1 &1143436453
 GameObject:
@@ -4748,11 +4790,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1203981438}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.3315701, y: -2.33, z: 10.53}
+  m_LocalPosition: {x: 0, y: 0, z: 9.19}
   m_LocalScale: {x: 1.9181452, y: 1.9181452, z: 1.9181452}
   m_Children: []
   m_Father: {fileID: 2087850179}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1225010979
 GameObject:
@@ -6396,7 +6438,7 @@ RectTransform:
   - {fileID: 589939894}
   - {fileID: 1143436454}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6714,7 +6756,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2087850179}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1882018005
 MeshRenderer:
@@ -7360,12 +7402,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1572428198}
-  - {fileID: 318485377}
   - {fileID: 241681983}
   - {fileID: 1882018004}
   - {fileID: 1203981442}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2112991468
 GameObject:
@@ -7643,6 +7684,7 @@ Transform:
   - {fileID: 84051760}
   - {fileID: 789912599}
   - {fileID: 310270324}
+  - {fileID: 318485377}
   m_Father: {fileID: 440486804}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

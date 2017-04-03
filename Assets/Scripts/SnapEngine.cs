@@ -9,6 +9,7 @@ public class SnapEngine : MonoBehaviour
 {
     public Text text;
     public GameObject objectsGroup;
+    public GameObject libraryGroup;
     public GameObject snapGameobject;
     public GameObject pointerGameobject;
     private Transform pointerTransform;
@@ -237,7 +238,8 @@ public class SnapEngine : MonoBehaviour
     private List<Snap> GetUserSnaps()
     {
         var userSnaps = new List<Snap>();
-        var snapObjects = objectsGroup.GetComponentsInChildren<SnapObject>();
+        List<SnapObject> snapObjects = objectsGroup.GetComponentsInChildren<SnapObject>().ToList();
+        snapObjects.AddRange(libraryGroup.GetComponentsInChildren<SnapObject>().ToList());
         foreach (var snapObject in snapObjects)
         {
             var snap = new Snap();
