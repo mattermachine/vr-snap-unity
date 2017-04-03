@@ -32,6 +32,7 @@ public class SnapEngine : MonoBehaviour
     public Color draggingPointerColor = new Color(0.88f, 0.38f, 0f, 0.62f);
     public Color snappedPointerColor = new Color(0.93f, 0.22f, 0f, 0.8f);
     public bool pointerIsSnapped = false;
+    public float librarySwitchAngle = 50;
 
     public float snapDistance = 5;  // snap radius in pixels
 
@@ -59,17 +60,20 @@ public class SnapEngine : MonoBehaviour
 
     void Update()
     {
+
+        // Zoom using mousewheel.
         if (Input.GetAxis("Mouse ScrollWheel") > 0f ) // forward
         {
-            Debug.Log("scroll up");
             mainCamera.transform.parent.Translate(mainCamera.transform.forward);
         }
         else if (Input.GetAxis("Mouse ScrollWheel") < 0f ) // backwards
         {
-            Debug.Log("scroll down");
-            mainCamera.transform.parent.position = new Vector3(0,2,0);
+            mainCamera.transform.parent.position = new Vector3(0,2,0);  // Snap back to overview.
         }
 
+        // Show library when looking up.
+//        Debug.Log(mainCamera.transform.eulerAngles.x);
+        libraryGroup.SetActive((mainCamera.transform.eulerAngles.x - 360) < -librarySwitchAngle && mainCamera.transform.eulerAngles.x > 180);
 
         bool rayDidHit = false;
         if (!(dragging && dontRayWhenDragging))
