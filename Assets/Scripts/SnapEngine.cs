@@ -112,7 +112,14 @@ public class SnapEngine : MonoBehaviour
                 flipNormal = false;
                 foreach (var draggedObject in draggedObjects)
                 {
-                    draggedObject.transform.parent = objectsGroup.transform;
+                    if (libraryGroup.activeSelf)
+                    {
+                        draggedObject.transform.parent = libraryGroup.transform;
+                    }
+                    else
+                    {
+                        draggedObject.transform.parent = objectsGroup.transform;
+                    }
                     draggedObject.GetComponent<Collider>().enabled = true;  // re-enable collider
                 }
                 DestroyVertexSnapsGroup();
