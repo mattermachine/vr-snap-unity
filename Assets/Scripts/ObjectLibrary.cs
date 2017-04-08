@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class ObjectLibrary : MonoBehaviour
 {
-
     public float librarySwitchAngle = 20;
 
     private bool visible = false;
     public bool Visible
     {
         get { return visible; }
+    }
+
+    private SnapEngine snapEngine
+    {
+        get
+        {
+            return SnapEngine.singleton;
+        }
     }
 
     // Use this for initialization
@@ -24,18 +31,18 @@ public class ObjectLibrary : MonoBehaviour
 
 	    // Show library when looking up or pressing spacebar.
 	    bool spacebarPressed = Input.GetKeyDown(KeyCode.Space);
-        Debug.Log(SnapEngine.mainCamera.transform.eulerAngles.x);
+//        Debug.Log(SnapEngine.mainCamera.transform.eulerAngles.x);
 	    bool vrLookingUp = (SnapEngine.mainCamera.transform.eulerAngles.x - 360) < -librarySwitchAngle;
 	    vrLookingUp &= SnapEngine.mainCamera.transform.eulerAngles.x > 180;
 	    if (visible && spacebarPressed)
 	    {
 	        Hide();
 	    }
-	    else if (!SnapEngine.dragging && (vrLookingUp || spacebarPressed))
+	    else if (!snapEngine.draggingObject && (vrLookingUp || spacebarPressed))
 	    {
 	        Show();
 	    }
-	    else if (visible && !SnapEngine.dragging && !SnapEngine.rayCastSuccess &&
+	    else if (visible && !snapEngine.draggingObject && !snapEngine.rayCastSuccess &&
 	             (Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(1)))
 	    {
 	        Hide();

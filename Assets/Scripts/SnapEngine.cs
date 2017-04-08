@@ -17,12 +17,12 @@ public class SnapEngine : MonoBehaviour
     private GameObject snapsGroup;
     public static Camera mainCamera;
     private Material pointerMaterial;
-    public static bool dragging = false;
+    public bool draggingObject = false;
     private float pointerZ;
     private float defaultPointerZ = 5;
     private List<GameObject> draggedObjects;
     private List<Snap> snaps;
-    private Vector3 hitPoint;
+    public Vector3 hitPoint;
     private Vector3 hitNormal;
     private Transform hitTransform;
     private bool flipNormal = false;
@@ -33,7 +33,8 @@ public class SnapEngine : MonoBehaviour
     public Color draggingPointerColor = new Color(0.88f, 0.38f, 0f, 0.62f);
     public Color snappedPointerColor = new Color(0.93f, 0.22f, 0f, 0.8f);
     public bool pointerIsSnapped = false;
-    public static bool rayCastSuccess = false;
+    public bool rayCastSuccess = false;
+    public static SnapEngine singleton;
 
     public float snapDistance = 5;  // snap radius in pixels
 
@@ -45,6 +46,7 @@ public class SnapEngine : MonoBehaviour
 
     void Start()
     {
+        singleton = this;
         mainCamera = pointerGameobject.transform.parent.GetComponent<Camera>();
         pointerMaterial = pointerGameobject.GetComponent<Renderer>().sharedMaterial;
         VRSettings.showDeviceView = true;
@@ -70,7 +72,7 @@ public class SnapEngine : MonoBehaviour
 
 
         rayCastSuccess = false;
-        if (!(dragging && dontRayWhenDragging))
+        if (!(draggingObject && dontRayWhenDragging))
         {
             // Ray against objects in the scene.
             RaycastHit rayCastHit;
@@ -90,16 +92,16 @@ public class SnapEngine : MonoBehaviour
         var pointerIsSnapped = SnapPointer();
 
         // FIXME: collect all orientation logic here (from ray-ing and snapping).
-        if (rayCastSuccess && dragging && hitTransform.gameObject == constructionPlane.transform)
+        if (rayCastSuccess && draggingObject && hitTransform == constructionPlane.transform)
         {
             pointerTransform.up = Vector3.down;
         }
 
-        if (dragging)
+        if (draggingObject)
         {
             pointerMaterial.color = pointerIsSnapped ? snappedPointerColor : draggingPointerColor;
 
-            // When dragging, RMB flips the dragged object along the pointer normal.
+            // When dragging an object, RMB flips the dragged object along the pointer normal.
             if (Input.GetMouseButtonDown(1))
             {
                 flipNormal = !flipNormal;
@@ -108,7 +110,7 @@ public class SnapEngine : MonoBehaviour
             // Dragged object released.
             if (Input.GetMouseButtonUp(0))
             {
-                dragging = false;
+                draggingObject = false;
                 flipNormal = false;
                 foreach (var draggedObject in draggedObjects)
                 {
@@ -132,9 +134,9 @@ public class SnapEngine : MonoBehaviour
         {
             if (rayCastSuccess)
             {
-                if (Input.GetMouseButtonDown(0)  && hitTransform!= constructionPlane.transform)  // don't drag plane object
+                if (Input.GetMouseButtonDown(0)  && hitTransform != constructionPlane.transform)  // don't drag plane object
                 {
-                    dragging = true;
+                    draggingObject = true;
                     draggedObjects = new List<GameObject>();
                     GetConnectedObjects(hitTransform.gameObject);
                     foreach (var draggedObject in draggedObjects)
@@ -170,7 +172,7 @@ public class SnapEngine : MonoBehaviour
                     snaps = GetUserSnaps();
                 }
             }
-            else  // no ray hit, not dragging
+            else  // no ray hit, not dragging object
             {
                 pointerZ = defaultPointerZ;
                 pointerTransform.position = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, pointerZ));
@@ -196,7 +198,7 @@ public class SnapEngine : MonoBehaviour
                   Mathf.Pow(Input.mousePosition.y - screenPosition.y, 2) > snapDistance * snapDistance) continue;
             adjustedMousePosition = screenPosition;
             pointerZ = screenPosition.z;
-//            pointerTransform.up = dragging ? snap.normal : -snap.normal;   // simulate male-female
+//            pointerTransform.up = draggingObject ? snap.normal : -snap.normal;   // simulate male-female
             pointerTransform.up = flipNormal ? -pointerTransform.up : pointerTransform.up;
             snapped = true;
             break;
