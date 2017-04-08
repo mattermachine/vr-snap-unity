@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.VR;
+//using Viveport.VR;
 
 public class SnapEngine : MonoBehaviour
 {
@@ -38,12 +39,6 @@ public class SnapEngine : MonoBehaviour
     public bool rayCastSuccess = false;
     private Vector3 adjustedMousePosition;
     public float snapDistance = 5;  // snap radius in pixels
-
-    struct Snap
-    {
-        public Vector3 position;
-        public Vector3 normal;
-    }
 
     void Start()
     {
@@ -253,6 +248,37 @@ public class SnapEngine : MonoBehaviour
         return vertexSnaps;
     }
 
+    // Gathers all valid user-created snaps from object in the scene.
+    private List<Snap> GetUserSnaps()
+    {
+        var userSnaps = new List<Snap>();
+        List<SnapGizmo> snapGizmos = sceneRoot.GetComponentsInChildren<SnapGizmo>().ToList();
+        snapGizmos.AddRange(objectLibrary.GetComponentsInChildren<SnapGizmo>().ToList());
+        snapGizmos.AddRange(constructionPlane.GetComponentsInChildren<SnapGizmo>().ToList());
+        foreach (var snapGizmo in snapGizmos)
+        {
+            userSnaps.Add(snapGizmo.snap);
+        }
+
+        return userSnaps;
+    }
+
+    private void DestroyVertexSnapsGroup()
+    {
+        if (snapsGroup != null)
+        {
+            DestroyImmediate(snapsGroup);
+        }
+    }
+
+    private GameObject InstantiateSnapObject(Snap snap)
+    {
+        var snapObject = Instantiate(this.snapGameobject) as GameObject;
+        snapObject.transform.position = snap.position;
+        snapObject.transform.up = snap.normal;
+        return snapObject;
+    }
+
     // Finds all objects connected to the dragged one.
     private void GetConnectedObjects(GameObject draggedObject)
     {
@@ -261,8 +287,8 @@ public class SnapEngine : MonoBehaviour
             return;
         }
         draggedObjects.Add(draggedObject);
-        var draggedSnapObjects = draggedObject.GetComponentsInChildren<SnapObject>().ToList();
-        var otherSnapObjects = sceneRoot.GetComponentsInChildren<SnapObject>().ToList();
+        var draggedSnapObjects = draggedObject.GetComponentsInChildren<SnapGizmo>().ToList();
+        var otherSnapObjects = sceneRoot.GetComponentsInChildren<SnapGizmo>().ToList();
         // First remove dragged snap objects from the other snap objects.
         foreach (var draggedSnapObject in draggedSnapObjects)
         {
@@ -287,37 +313,4 @@ public class SnapEngine : MonoBehaviour
         }
     }
 
-    // Gathers all valid user-created snaps from object in the scene.
-    private List<Snap> GetUserSnaps()
-    {
-        var userSnaps = new List<Snap>();
-        List<SnapObject> snapObjects = sceneRoot.GetComponentsInChildren<SnapObject>().ToList();
-        snapObjects.AddRange(objectLibrary.GetComponentsInChildren<SnapObject>().ToList());
-        snapObjects.AddRange(constructionPlane.GetComponentsInChildren<SnapObject>().ToList());
-        foreach (var snapObject in snapObjects)
-        {
-            var snap = new Snap();
-            snap.position = snapObject.transform.position;
-            snap.normal = snapObject.transform.up;
-            userSnaps.Add(snap);
-        }
-
-        return userSnaps;
-    }
-
-    private void DestroyVertexSnapsGroup()
-    {
-        if (snapsGroup != null)
-        {
-            DestroyImmediate(snapsGroup);
-        }
-    }
-
-    private GameObject InstantiateSnapObject(Snap snap)
-    {
-        var snapObject = Instantiate(this.snapGameobject) as GameObject;
-        snapObject.transform.position = snap.position;
-        snapObject.transform.up = snap.normal;
-        return snapObject;
-    }
 }
