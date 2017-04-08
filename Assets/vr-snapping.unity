@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -939,7 +939,9 @@ MonoBehaviour:
   objectLibrary: {fileID: 2132396910}
   snapGameobject: {fileID: 315531147}
   pointerGameobject: {fileID: 1112326630}
-  planeGameobject: {fileID: 1203981438}
+  constructionPlane: {fileID: 1203981443}
+  draggingObject: 0
+  hitPoint: {x: 0, y: 0, z: 0}
   doVertexSnaps: 0
   dontRayWhenDragging: 0
   defaultPointerColor: {r: 0, g: 0, b: 0, a: 0.3}
@@ -947,6 +949,7 @@ MonoBehaviour:
   draggingPointerColor: {r: 0.11, g: 0.88, b: 0.09, a: 0.62}
   snappedPointerColor: {r: 0.93, g: 0.22, b: 0, a: 0.8}
   pointerIsSnapped: 0
+  rayCastSuccess: 0
   snapDistance: 15
 --- !u!4 &194554452
 Transform:
@@ -4478,7 +4481,9 @@ MonoBehaviour:
   objectLibrary: {fileID: 0}
   snapGameobject: {fileID: 0}
   pointerGameobject: {fileID: 0}
-  planeGameobject: {fileID: 0}
+  constructionPlane: {fileID: 0}
+  draggingObject: 0
+  hitPoint: {x: 0, y: 0, z: 0}
   doVertexSnaps: 0
   dontRayWhenDragging: 1
   defaultPointerColor: {r: 0, g: 0, b: 0, a: 0.3}
@@ -4486,6 +4491,7 @@ MonoBehaviour:
   draggingPointerColor: {r: 0.11, g: 0.88, b: 0.09, a: 0.62}
   snappedPointerColor: {r: 0.93, g: 0.22, b: 0, a: 0.8}
   pointerIsSnapped: 0
+  rayCastSuccess: 0
   snapDistance: 5
 --- !u!1 &1143436453
 GameObject:
@@ -4725,8 +4731,9 @@ GameObject:
   - component: {fileID: 1203981441}
   - component: {fileID: 1203981440}
   - component: {fileID: 1203981439}
+  - component: {fileID: 1203981443}
   m_Layer: 0
-  m_Name: plane
+  m_Name: construction plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4793,11 +4800,22 @@ Transform:
   m_GameObject: {fileID: 1203981438}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4.7576704, y: 4.7576685, z: 4.7576685}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1203981443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1203981438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75043c85eee900240859479e328335f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1225010979
 GameObject:
   m_ObjectHideFlags: 0
@@ -7386,8 +7404,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2087850179}
+  - component: {fileID: 2087850180}
   m_Layer: 0
-  m_Name: scene objects
+  m_Name: scene root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7409,6 +7428,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2087850180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2087850178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 327c5108e32329244a7e4ebd6b38a792, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 0.25
 --- !u!1 &2112991468
 GameObject:
   m_ObjectHideFlags: 0
@@ -7701,6 +7732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c88f3c9965dca0f4ea6937261a4957cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  librarySwitchAngle: 20
 --- !u!1 &2138950016
 GameObject:
   m_ObjectHideFlags: 0

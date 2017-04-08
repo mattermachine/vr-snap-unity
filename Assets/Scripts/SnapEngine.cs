@@ -12,7 +12,7 @@ public class SnapEngine : MonoBehaviour
     public ObjectLibrary objectLibrary;
     public GameObject snapGameobject;
     public GameObject pointerGameobject;
-    public GameObject planeGameobject;
+    public ConstructionPlane constructionPlane;
     private Transform pointerTransform;
     private GameObject snapsGroup;
     public static Camera mainCamera;
@@ -90,7 +90,7 @@ public class SnapEngine : MonoBehaviour
         var pointerIsSnapped = SnapPointer();
 
         // FIXME: collect all orientation logic here (from ray-ing and snapping).
-        if (rayCastSuccess && dragging && hitTransform.gameObject == planeGameobject)
+        if (rayCastSuccess && dragging && hitTransform.gameObject == constructionPlane.transform)
         {
             pointerTransform.up = Vector3.down;
         }
@@ -132,7 +132,7 @@ public class SnapEngine : MonoBehaviour
         {
             if (rayCastSuccess)
             {
-                if (Input.GetMouseButtonDown(0)  && hitTransform.gameObject != planeGameobject)  // don't drag plane object
+                if (Input.GetMouseButtonDown(0)  && hitTransform!= constructionPlane.transform)  // don't drag plane object
                 {
                     dragging = true;
                     draggedObjects = new List<GameObject>();
@@ -282,7 +282,7 @@ public class SnapEngine : MonoBehaviour
         var userSnaps = new List<Snap>();
         List<SnapObject> snapObjects = objectsGroup.GetComponentsInChildren<SnapObject>().ToList();
         snapObjects.AddRange(objectLibrary.GetComponentsInChildren<SnapObject>().ToList());
-        snapObjects.AddRange(planeGameobject.GetComponentsInChildren<SnapObject>().ToList());
+        snapObjects.AddRange(constructionPlane.GetComponentsInChildren<SnapObject>().ToList());
         foreach (var snapObject in snapObjects)
         {
             var snap = new Snap();
