@@ -70,6 +70,7 @@ public class SnapEngine : MonoBehaviour
             mainCamera.transform.parent.position = new Vector3(0,2,0);  // Snap back to overview.
         }
 
+        if (SceneRoot.rotating) return;
 
         rayCastSuccess = false;
         if (!(draggingObject && dontRayWhenDragging))
