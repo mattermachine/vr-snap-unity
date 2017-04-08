@@ -10,7 +10,7 @@ public class SnapEngine : MonoBehaviour
     public static SnapEngine singleton;
 
     public Text text;
-    public GameObject objectsGroup;
+    public SceneRoot sceneRoot;
     public ObjectLibrary objectLibrary;
     public GameObject snapGameobject;
     public GameObject pointerGameobject;
@@ -62,16 +62,14 @@ public class SnapEngine : MonoBehaviour
     {
 
         // Zoom using mousewheel.
-        if (Input.GetAxis("Mouse ScrollWheel") > 0f ) // forward
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f) // forward
         {
             mainCamera.transform.parent.Translate(mainCamera.transform.forward);
         }
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0f ) // backwards
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0f) // backwards
         {
-            mainCamera.transform.parent.position = new Vector3(0,2,0);  // Snap back to overview.
+            mainCamera.transform.parent.position = new Vector3(0, 2, 0); // Snap back to overview.
         }
-
-        if (SceneRoot.rotating) return;
 
         rayCastSuccess = false;
         if (!(draggingObject && dontRayWhenDragging))
@@ -86,6 +84,9 @@ public class SnapEngine : MonoBehaviour
                 hitNormal = rayCastHit.normal;
                 hitTransform = rayCastHit.transform;
                 pointerZ = mainCamera.WorldToScreenPoint(hitPoint).z;
+
+
+        if (sceneRoot.Rotate()) return;
                 pointerTransform.position = hitPoint;
                 pointerTransform.up = flipNormal ? -hitNormal : hitNormal;
             }
@@ -122,7 +123,7 @@ public class SnapEngine : MonoBehaviour
                     }
                     else
                     {
-                        draggedObject.transform.parent = objectsGroup.transform;
+                        draggedObject.transform.parent = sceneRoot.transform;
                     }
                     draggedObject.GetComponent<Collider>().enabled = true;  // re-enable collider
                 }
@@ -185,6 +186,7 @@ public class SnapEngine : MonoBehaviour
 
         //text.text = (" width: " + VRSettings.eyeTextureWidth + "  height: " + VRSettings.eyeTextureHeight);
         text.text = ("x: " + Input.mousePosition.x + " y: " + Input.mousePosition.y);
+
     }
 
     private bool SnapPointer()
@@ -209,11 +211,13 @@ public class SnapEngine : MonoBehaviour
 
         return snapped;
     }
+
+
     // Generates snaps at vertices, on-the-fly.
     private List<Snap> GetVertexSnaps()
     {
         var meshFilters = new List<MeshFilter>();
-        foreach (Transform child in objectsGroup.transform)
+        foreach (Transform child in sceneRoot.transform)
         {
             var meshFilter = child.GetComponent<MeshFilter>();
             if (meshFilter != null)
@@ -255,7 +259,7 @@ public class SnapEngine : MonoBehaviour
         }
         draggedObjects.Add(draggedObject);
         var draggedSnapObjects = draggedObject.GetComponentsInChildren<SnapObject>().ToList();
-        var otherSnapObjects = objectsGroup.GetComponentsInChildren<SnapObject>().ToList();
+        var otherSnapObjects = sceneRoot.GetComponentsInChildren<SnapObject>().ToList();
         // First remove dragged snap objects from the other snap objects.
         foreach (var draggedSnapObject in draggedSnapObjects)
         {
@@ -284,7 +288,7 @@ public class SnapEngine : MonoBehaviour
     private List<Snap> GetUserSnaps()
     {
         var userSnaps = new List<Snap>();
-        List<SnapObject> snapObjects = objectsGroup.GetComponentsInChildren<SnapObject>().ToList();
+        List<SnapObject> snapObjects = sceneRoot.GetComponentsInChildren<SnapObject>().ToList();
         snapObjects.AddRange(objectLibrary.GetComponentsInChildren<SnapObject>().ToList());
         snapObjects.AddRange(constructionPlane.GetComponentsInChildren<SnapObject>().ToList());
         foreach (var snapObject in snapObjects)

@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class SceneRoot : MonoBehaviour
 {
-    private Vector3 mouseDownPosition;
-    private Vector3 mouseDownRotation;
-    private Vector3 rotationCenter;
     public float rotationSpeed = .25f;
-    private Vector3 rotation;
-    public static bool rotating = false;
+    private Vector3 previousMousePosition;
+    private Vector3 rotationCenter;
+    private float rotationY;
+    private bool rotating = false;
 
     private SnapEngine snapEngine
     {
@@ -23,13 +22,11 @@ public class SceneRoot : MonoBehaviour
 	void Start ()
 	{
 	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-//	    if (snapEngine.rayCastSuccess) return;
 
-	    if (Input.GetMouseButtonDown(0))
+	// Called from SnapEngine.
+	public bool Rotate ()
+	{
+	    if (Input.GetMouseButtonDown(2))
 	    {
 	        if (snapEngine.rayCastSuccess)
 	        {
@@ -39,25 +36,25 @@ public class SceneRoot : MonoBehaviour
 	        {
 	            rotationCenter = Vector3.zero;
 	        }
-	        mouseDownPosition = Input.mousePosition;
-	        mouseDownRotation = transform.localEulerAngles;
+	        previousMousePosition = Input.mousePosition;
 	        rotating = true;
 	    }
 
 	    if (rotating)
 	    {
-//	        rotation = mouseDownRotation + Vector3.up * rotationSpeed * (Input.mousePosition.x - mouseDownPosition.x);
-	        rotation = Vector3.up * rotationSpeed * (Input.mousePosition.x - mouseDownPosition.x);
-//	        transform.localEulerAngles = rotation;
-	        transform.RotateAround(rotationCenter,Vector3.up,rotation.y);
+	        rotationY = rotationSpeed * (Input.mousePosition.x - previousMousePosition.x);
+	        previousMousePosition = Input.mousePosition;
+	        transform.RotateAround(rotationCenter,Vector3.up,rotationY);
 	        // Transform construction plane identically.
 	        snapEngine.constructionPlane.transform.position = transform.position;
 	        snapEngine.constructionPlane.transform.rotation = transform.rotation;
 	    }
 
-	    if (Input.GetMouseButtonUp(0))
+	    if (Input.GetMouseButtonUp(2))
 	    {
 	        rotating = false;
 	    }
+
+	    return rotating;
 	}
 }
