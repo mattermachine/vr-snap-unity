@@ -32,8 +32,8 @@ public class ObjectLibrary : MonoBehaviour
 	    // Show library when looking up or pressing spacebar.
 	    bool spacebarPressed = Input.GetKeyDown(KeyCode.Space);
 //        Debug.Log(SnapEngine.mainCamera.transform.eulerAngles.x);
-	    bool vrLookingUp = (SnapEngine.mainCamera.transform.eulerAngles.x - 360) < -librarySwitchAngle;
-	    vrLookingUp &= SnapEngine.mainCamera.transform.eulerAngles.x > 180;
+	    bool vrLookingUp = (snapEngine.mainCamera.transform.eulerAngles.x - 360) < -librarySwitchAngle;
+	    vrLookingUp &= snapEngine.mainCamera.transform.eulerAngles.x > 180;
 	    if (visible && spacebarPressed)
 	    {
 	        Hide();

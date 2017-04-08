@@ -7,6 +7,8 @@ using UnityEngine.VR;
 
 public class SnapEngine : MonoBehaviour
 {
+    public static SnapEngine singleton;
+
     public Text text;
     public GameObject objectsGroup;
     public ObjectLibrary objectLibrary;
@@ -15,7 +17,7 @@ public class SnapEngine : MonoBehaviour
     public ConstructionPlane constructionPlane;
     private Transform pointerTransform;
     private GameObject snapsGroup;
-    public static Camera mainCamera;
+    public Camera mainCamera;
     private Material pointerMaterial;
     public bool draggingObject = false;
     private float pointerZ;
@@ -34,8 +36,7 @@ public class SnapEngine : MonoBehaviour
     public Color snappedPointerColor = new Color(0.93f, 0.22f, 0f, 0.8f);
     public bool pointerIsSnapped = false;
     public bool rayCastSuccess = false;
-    public static SnapEngine singleton;
-
+    private Vector3 adjustedMousePosition;
     public float snapDistance = 5;  // snap radius in pixels
 
     struct Snap
