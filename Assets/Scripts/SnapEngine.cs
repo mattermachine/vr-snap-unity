@@ -84,20 +84,27 @@ public class SnapEngine : MonoBehaviour
                 hitNormal = rayCastHit.normal;
                 hitTransform = rayCastHit.transform;
                 pointerZ = mainCamera.WorldToScreenPoint(hitPoint).z;
-
-
-        if (sceneRoot.Rotate()) return;
-                pointerTransform.position = hitPoint;
-                pointerTransform.up = flipNormal ? -hitNormal : hitNormal;
             }
         }
 
-        var pointerIsSnapped = SnapPointer();
+
+        if (sceneRoot.Rotate()) return;
 
         // FIXME: collect all orientation logic here (from ray-ing and snapping).
-        if (rayCastSuccess && draggingObject && hitTransform == constructionPlane.transform)
+        adjustedMousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, pointerZ);
+        pointerIsSnapped = SnapPointer();
+        pointerTransform.position = mainCamera.ScreenToWorldPoint(adjustedMousePosition);
+        if (rayCastSuccess)
         {
-            pointerTransform.up = Vector3.down;
+            pointerTransform.position = hitPoint;
+            pointerTransform.up = flipNormal ? -hitNormal : hitNormal;
+
+
+            // Avoid orienting objects under construction plane.
+            if (draggingObject && hitTransform == constructionPlane.transform)
+            {
+                pointerTransform.up = Vector3.down;
+            }
         }
 
         if (draggingObject)
@@ -192,9 +199,7 @@ public class SnapEngine : MonoBehaviour
     private bool SnapPointer()
     {
         bool snapped = false;
-
         // Snap to closest snap in screenspace, if any within radius.
-        var adjustedMousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, pointerZ);
         foreach (var snap in snaps)
         {
             var screenPosition = mainCamera.WorldToScreenPoint(snap.position);
@@ -207,8 +212,6 @@ public class SnapEngine : MonoBehaviour
             snapped = true;
             break;
         }
-        pointerTransform.position = mainCamera.ScreenToWorldPoint(adjustedMousePosition);
-
         return snapped;
     }
 
