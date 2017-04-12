@@ -23,7 +23,7 @@ public class SnapEngine : MonoBehaviour
     public bool draggingObject = false;
     private float pointerZ;
     private float defaultPointerZ = 5;
-    private List<GameObject> draggedObjects;
+    private List<DraggableObject> draggedObjects;
     private List<Snap> snaps;
     public Vector3 hitPoint;
     private Vector3 hitNormal;
@@ -43,6 +43,7 @@ public class SnapEngine : MonoBehaviour
     void Start()
     {
         singleton = this;
+        draggedObjects = new List<DraggableObject>();
         mainCamera = pointerGameobject.transform.parent.GetComponent<Camera>();
         pointerMaterial = pointerGameobject.GetComponent<Renderer>().sharedMaterial;
         VRSettings.showDeviceView = true;
@@ -51,6 +52,15 @@ public class SnapEngine : MonoBehaviour
         pointerZ = defaultPointerZ;
         //Screen.SetResolution(VRSettings.eyeTextureWidth, VRSettings.eyeTextureHeight, false);
         //Debug.Log((" width: " + VRSettings.eyeTextureWidth + "  height: " + VRSettings.eyeTextureHeight));
+
+        foreach (Transform child in sceneRoot.transform)
+        {
+            child.gameObject.AddComponent<DraggableObject>();
+        }
+        foreach (Transform child in objectLibrary.transform)
+        {
+            child.gameObject.AddComponent<DraggableObject>();
+        }
     }
 
     void Update()
@@ -132,6 +142,8 @@ public class SnapEngine : MonoBehaviour
                 DestroyVertexSnapsGroup();
                 snaps = GetUserSnaps();
 
+                draggedObjects = new List<DraggableObject>();
+
                 objectLibrary.Hide();
             }
         }
@@ -142,8 +154,8 @@ public class SnapEngine : MonoBehaviour
                 if (Input.GetMouseButtonDown(0)  && hitTransform != constructionPlane.transform)  // don't drag plane object
                 {
                     draggingObject = true;
-                    draggedObjects = new List<GameObject>();
-                    GetConnectedObjects(hitTransform.gameObject);
+                    draggedObjects = new List<DraggableObject>();
+                    GetConnectedObjects(hitTransform.GetComponent<DraggableObject>());
                     foreach (var draggedObject in draggedObjects)
                     {
                         draggedObject.GetComponent<Collider>().enabled = false;  // disable collider -> disables raycasting against this object
@@ -280,7 +292,7 @@ public class SnapEngine : MonoBehaviour
     }
 
     // Finds all objects connected to the dragged one.
-    private void GetConnectedObjects(GameObject draggedObject)
+    private void GetConnectedObjects(DraggableObject draggedObject)
     {
         if (draggedObjects.Contains(draggedObject))
         {
@@ -304,7 +316,7 @@ public class SnapEngine : MonoBehaviour
             {
                 if (draggedSnapObject.transform.position == otherSnapObject.transform.position)
                 {
-                    var otherObject = otherSnapObject.transform.parent.gameObject;
+                    var otherObject = otherSnapObject.transform.parent.GetComponent<DraggableObject>();
                     // Recurse to get all connected objects
                     // FIXME avoid infinite loops
                     GetConnectedObjects(otherObject);
