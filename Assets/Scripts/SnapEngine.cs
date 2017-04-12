@@ -88,10 +88,8 @@ public class SnapEngine : MonoBehaviour
                 hitPoint = rayCastHit.point;
                 hitNormal = rayCastHit.normal;
                 hitTransform = rayCastHit.transform;
-                pointerZ = mainCamera.WorldToScreenPoint(hitPoint).z;
             }
         }
-
 
         if (sceneRoot.Rotate()) return;
 
@@ -99,16 +97,19 @@ public class SnapEngine : MonoBehaviour
         adjustedMousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, pointerZ);
         pointerIsSnapped = SnapPointer();
         pointerTransform.position = mainCamera.ScreenToWorldPoint(adjustedMousePosition);
-        if (rayCastSuccess)
+        if (rayCastSuccess && !(draggedObjects.Count > 0 && draggedObjects[0].isOnConstructionPlane))
         {
-            pointerTransform.position = hitPoint;
-            pointerTransform.up = flipNormal ? -hitNormal : hitNormal;
-
-
-            // Avoid orienting objects under construction plane.
-            if (draggingObject && hitTransform == constructionPlane.transform)
+            if (!pointerIsSnapped)
             {
-                pointerTransform.up = Vector3.down;
+                pointerTransform.position = hitPoint;
+                pointerTransform.up = flipNormal ? -hitNormal : hitNormal;
+                pointerZ = mainCamera.WorldToScreenPoint(hitPoint).z;
+
+                // Avoid orienting objects under construction plane.
+                if (draggingObject && hitTransform == constructionPlane.transform)
+                {
+                    pointerTransform.up = Vector3.down;
+                }
             }
         }
 
@@ -137,6 +138,8 @@ public class SnapEngine : MonoBehaviour
                     {
                         draggedObject.transform.parent = sceneRoot.transform;
                     }
+
+                    draggedObject.isOnConstructionPlane = (rayCastSuccess && hitTransform == constructionPlane.transform);
                     draggedObject.GetComponent<Collider>().enabled = true;  // re-enable collider
                 }
                 DestroyVertexSnapsGroup();
@@ -151,7 +154,7 @@ public class SnapEngine : MonoBehaviour
         {
             if (rayCastSuccess)
             {
-                if (Input.GetMouseButtonDown(0)  && hitTransform != constructionPlane.transform)  // don't drag plane object
+                if (Input.GetMouseButtonDown(0) && hitTransform != constructionPlane.transform)  // don't drag plane object
                 {
                     draggingObject = true;
                     draggedObjects = new List<DraggableObject>();

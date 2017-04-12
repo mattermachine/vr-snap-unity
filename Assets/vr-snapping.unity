@@ -940,7 +940,7 @@ MonoBehaviour:
   snapGameobject: {fileID: 315531147}
   pointerGameobject: {fileID: 1112326630}
   constructionPlane: {fileID: 1203981443}
-  mainCamera: {fileID: 0}
+  mainCamera: {fileID: 440486803}
   draggingObject: 0
   hitPoint: {x: 0, y: 0, z: 0}
   doVertexSnaps: 0
