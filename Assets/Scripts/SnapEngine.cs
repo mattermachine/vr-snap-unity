@@ -66,16 +66,6 @@ public class SnapEngine : MonoBehaviour
     void Update()
     {
 
-        // Zoom using mousewheel.
-        if (Input.GetAxis("Mouse ScrollWheel") > 0f) // forward
-        {
-            mainCamera.transform.parent.Translate(mainCamera.transform.forward);
-        }
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0f) // backwards
-        {
-            mainCamera.transform.parent.position = new Vector3(0, 2, 0); // Snap back to overview.
-        }
-
         rayCastSuccess = false;
         if (!(draggingObject && dontRayWhenDragging))
         {
@@ -92,6 +82,16 @@ public class SnapEngine : MonoBehaviour
         }
 
         if (sceneRoot.Rotate()) return;
+
+        // Zoom using mousewheel.
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f) // forward
+        {
+            mainCamera.transform.parent.Translate(mainCamera.transform.forward);
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0f) // backwards
+        {
+            mainCamera.transform.parent.position = new Vector3(0, 2, 0); // Snap back to overview.
+        }
 
         // FIXME: collect all orientation logic here (from ray-ing and snapping).
         adjustedMousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, pointerZ);
