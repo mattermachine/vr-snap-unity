@@ -1,15 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class DraggableObject : MonoBehaviour
 {
+    public static List<DraggableObject> draggableObjects = new List<DraggableObject>();
+
     public bool isOnConstructionPlane = false;
     private Mesh mesh;
+    private Mesh wireframeMesh;
     private Material material;
     private Material wireframeMaterial;
-    private int[] edges;
-    private int[] boundaryEdges;
 
     // Use this for initialization
     void Start ()
@@ -17,19 +19,25 @@ public class DraggableObject : MonoBehaviour
 //	    material = Resources.Load ( "ToonLitOutline", typeof ( Material ) ) as Material;
         wireframeMaterial = Resources.Load ( "WireframeMat", typeof ( Material ) ) as Material;
         mesh = gameObject.GetComponent<MeshFilter>().mesh;
-        BuildEdgeLists(mesh);
-        mesh.subMeshCount = 2;
-        mesh.SetIndices (boundaryEdges, MeshTopology.Lines, 1);
+        wireframeMesh = new Mesh();
+        wireframeMesh.vertices = mesh.vertices;
+        wireframeMesh.SetIndices (BuildEdgeLists(mesh), MeshTopology.Lines, 0, false);
+        draggableObjects.Add(this);
     }
 
-    // Update is called once per frame
-    void Update () {
+//    public void DrawWireframe()
+//    {
+//	    Graphics.DrawMesh ( wireframeMesh, transform.localToWorldMatrix, wireframeMaterial, 0, null, 0, null, false, false );
+//    }
+    private void OnRenderObject()
+    {
 //	    Graphics.DrawMesh ( mesh, transform.localToWorldMatrix, material, 0, null, 0, null, false, false );
-        Graphics.DrawMesh ( mesh, transform.localToWorldMatrix, wireframeMaterial, 0, null, 1, null, false, false );
+        wireframeMaterial.SetPass(0);
+        Graphics.DrawMeshNow ( wireframeMesh, transform.localToWorldMatrix, 0 );
     }
 
 
-    private void BuildEdgeLists (Mesh mesh)
+    private int[] BuildEdgeLists (Mesh mesh)
     {
         var tmpEdges = new List<int> ();
         var tmpBoundaryEdges = new List<int> ();
@@ -81,8 +89,8 @@ public class DraggableObject : MonoBehaviour
             }
         }
 
-        edges = tmpEdges.ToArray ();
-        boundaryEdges = tmpBoundaryEdges.ToArray ();
+//        edges = tmpEdges.ToArray ();
+        return tmpBoundaryEdges.ToArray ();
     }
 
 }

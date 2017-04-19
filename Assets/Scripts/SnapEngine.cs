@@ -206,6 +206,14 @@ public class SnapEngine : MonoBehaviour
 
     }
 
+//    private void LateUpdate()
+//    {
+//        foreach (var draggableObject in DraggableObject.draggableObjects)
+//        {
+//            draggableObject.DrawWireframe();
+//        }
+//    }
+
     private bool SnapPointer()
     {
         bool snapped = false;
