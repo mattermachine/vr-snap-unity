@@ -217,8 +217,7 @@ public class SnapEngine : MonoBehaviour
                   Mathf.Pow(Input.mousePosition.y - screenPosition.y, 2) > snapDistance * snapDistance) continue;
             adjustedMousePosition = screenPosition;
             pointerZ = screenPosition.z;
-//            pointerTransform.up = draggingObject ? snap.normal : -snap.normal;   // simulate male-female
-            pointerTransform.up = flipNormal ? -pointerTransform.up : pointerTransform.up;
+            pointerTransform.up = flipNormal ? -snap.normal : snap.normal;
             snapped = true;
             break;
         }
