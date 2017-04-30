@@ -29,12 +29,13 @@ public class DraggableObject : MonoBehaviour
 //    {
 //	    Graphics.DrawMesh ( wireframeMesh, transform.localToWorldMatrix, wireframeMaterial, 0, null, 0, null, false, false );
 //    }
-    private void OnRenderObject()
-    {
-//	    Graphics.DrawMesh ( mesh, transform.localToWorldMatrix, material, 0, null, 0, null, false, false );
-        wireframeMaterial.SetPass(0);
-        Graphics.DrawMeshNow ( wireframeMesh, transform.localToWorldMatrix, 0 );
-    }
+
+//    private void OnRenderObject()
+//    {
+////	    Graphics.DrawMesh ( mesh, transform.localToWorldMatrix, material, 0, null, 0, null, false, false );
+//        wireframeMaterial.SetPass(0);
+//        Graphics.DrawMeshNow ( wireframeMesh, transform.localToWorldMatrix, 0 );
+//    }
 
 
     private int[] BuildEdgeLists (Mesh mesh)
