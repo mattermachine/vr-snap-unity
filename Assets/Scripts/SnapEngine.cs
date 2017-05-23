@@ -61,8 +61,8 @@ public class SnapEngine : MonoBehaviour
         {
             child.gameObject.AddComponent<DraggableObject>();
         }
-        Valve.VR.OpenVR.Compositor.SetTrackingSpace(Valve.VR.ETrackingUniverseOrigin.TrackingUniverseSeated);
-        Valve.VR.OpenVR.System.ResetSeatedZeroPose();
+        //Valve.VR.OpenVR.Compositor.SetTrackingSpace(Valve.VR.ETrackingUniverseOrigin.TrackingUniverseSeated);
+        //Valve.VR.OpenVR.System.ResetSeatedZeroPose();
     }
 
     void Update()
